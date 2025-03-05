@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AppRestriction
 {
-    public class AppRestriction
+    public class AppRestriction : IAppRestriction
     {
         IAppRestrictionBinding binding;
 
