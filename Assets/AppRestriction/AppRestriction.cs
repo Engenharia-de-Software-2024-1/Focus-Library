@@ -23,10 +23,10 @@ namespace AppRestriction
         private IAppRestrictionBinding getNativeBinding() 
         {
             IAppRestrictionBinding binding; 
-#if UNITY_ANDROID
-            binding = new AndroidAppRestrictionBinding();
-#else
+#if UNITY_EDITOR || UNITY_IOS
             binding = new UnsupportedPlatformAppRestrictionBinding();
+#else
+            binding = new AndroidAppRestrictionBinding();
 #endif
             return binding;
         }
