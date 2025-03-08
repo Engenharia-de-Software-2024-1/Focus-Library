@@ -293,6 +293,81 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &241603418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 241603419}
+  - component: {fileID: 241603421}
+  - component: {fileID: 241603420}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &241603419
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241603418}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 713220622}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 540, y: 1140}
+  m_SizeDelta: {x: 1080, y: 1920}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &241603420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241603418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &241603421
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241603418}
+  m_CullTransparentMesh: 1
 --- !u!1 &498665226
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +596,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 241603419}
   - {fileID: 1290875750}
   - {fileID: 121593582}
   - {fileID: 1705951170}
@@ -686,7 +762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1290875750
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1234,8 +1310,21 @@ MonoBehaviour:
   restTimeInSeconds: 10
   totalSessions: 2
   timerDisplay: {fileID: 498665228}
-  desistirButton: {fileID: 1705951171}
+  quitButton: {fileID: 1705951171}
+  quitButtonText: {fileID: 1636087899}
   modeDisplay: {fileID: 860278044}
+  extraText: {fileID: 1850074159}
+  buttonImage: {fileID: 1705951172}
+  backgroundImage: {fileID: 241603420}
+  focusTextColor: {r: 0.5058824, g: 0.30588236, b: 0.21568628, a: 1}
+  focusButtonColor: {r: 0.3137255, g: 0.12941177, b: 0.02745098, a: 1}
+  focusBackgroundColor: {r: 0.3137255, g: 0.12941177, b: 0.02745098, a: 1}
+  restTextColor: {r: 0.6313726, g: 0.2, b: 0.06666667, a: 1}
+  restButtonColor: {r: 0.77254903, g: 0.49411765, b: 0.36862746, a: 1}
+  restBackgroundColor: {r: 0.77254903, g: 0.49411765, b: 0.36862746, a: 1}
+  idleTextColor: {r: 1, g: 1, b: 1, a: 1}
+  idleButtonColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  idleBackgroundColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!4 &2136803650
 Transform:
   m_ObjectHideFlags: 0

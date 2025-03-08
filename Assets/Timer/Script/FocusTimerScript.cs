@@ -21,8 +21,38 @@ public class FocusTimerScript : MonoBehaviour
     public TMP_Text timerDisplay;
     [Tooltip("Botão para desistir")]
     public Button quitButton;
+    [Tooltip("Texto do botão de desistir")]
+    public TMP_Text quitButtonText; 
+
     [Tooltip("Texto para exibir o modo (ex.: 'Modo Foco' ou 'Modo Descanso')")]
     public TMP_Text modeDisplay;
+
+    [Header("Texto Extra (opcional)")]
+    [Tooltip("Outro texto qualquer na cena, se quiser mudar a cor")]
+    public TMP_Text extraText;
+
+    [Header("Imagem do Botão (ou outra Image)")]
+    [Tooltip("A Imagem que representa o fundo do botão ou um elemento de UI a ser recolorido")]
+    public Image buttonImage;
+
+    [Header("Background (opcional)")]
+    [Tooltip("Imagem de fundo que deve mudar de cor em cada estado")]
+    public Image backgroundImage;
+
+    [Header("Focus Colors")]
+    public Color focusTextColor       = new Color32(0x81, 0x4E, 0x37, 0xFF); // #814E37
+    public Color focusButtonColor     = new Color32(0x50, 0x21, 0x07, 0xFF); // #502107
+    public Color focusBackgroundColor = new Color32(0x50, 0x21, 0x07, 0xFF); // #502107
+
+    [Header("Rest Colors")]
+    public Color restTextColor       = new Color32(0xD1, 0x6F, 0x3E, 0xFF);  // #D16F3E
+    public Color restButtonColor     = new Color32(0xC5, 0x7E, 0x5E, 0xFF);  // #C57E5E
+    public Color restBackgroundColor = new Color32(0xC5, 0x7E, 0x5E, 0xFF);  // #C57E5E
+
+    [Header("Idle Colors")] //Por enquanto só coloquei para saber como o looping ta funcionando.
+    public Color idleTextColor       = Color.white;
+    public Color idleButtonColor     = Color.gray;
+    public Color idleBackgroundColor = Color.gray;
 
     private float currentTime;
     private TimerState currentState = TimerState.Idle;
@@ -76,19 +106,45 @@ public class FocusTimerScript : MonoBehaviour
     {
         currentState = TimerState.Focus;
         currentTime = focusTimeInSeconds;
+
         if (modeDisplay != null)
+        {
             modeDisplay.text = "Modo Foco";
+            modeDisplay.color = focusTextColor;
+        }
+        if (timerDisplay != null)
+            timerDisplay.color = focusTextColor;
+        if (extraText != null)
+            extraText.color = focusTextColor;
+        if (buttonImage != null)
+            buttonImage.color = focusButtonColor;
+            quitButtonText.color = focusTextColor;
+        if (backgroundImage != null)
+            backgroundImage.color = focusBackgroundColor;
     }
 
     void StartRestSession()
     {
         currentState = TimerState.Rest;
         currentTime = restTimeInSeconds;
+
         if (modeDisplay != null)
+        {
             modeDisplay.text = "Modo Descanso";
+            modeDisplay.color = restTextColor;
+        }
+        if (timerDisplay != null)
+            timerDisplay.color = restTextColor;
+        if (extraText != null)
+            extraText.color = restTextColor;
+        if (buttonImage != null)
+            buttonImage.color = restButtonColor;
+            quitButtonText.color = restTextColor;
+        if (backgroundImage != null)
+            backgroundImage.color = restBackgroundColor;
     }
 
-    public void QuitSession() //Caso clique no botão de desistir.
+    public void QuitSession()
     {
         if (currentState == TimerState.Focus)
             totalFocusTimeSpent += (focusTimeInSeconds - currentTime);
@@ -100,9 +156,32 @@ public class FocusTimerScript : MonoBehaviour
         EndAllSessions();
     }
 
-    void EndAllSessions() // Envia os dados concluidos dessas sessões para DataManager.
+    void EndAllSessions()
     {
+        currentState = TimerState.Idle;
+        currentTime = 0;
+
+        if (modeDisplay != null)
+        {
+            modeDisplay.text = "Sessão Encerrada";
+            modeDisplay.color = idleTextColor;
+        }
+        if (timerDisplay != null)
+            timerDisplay.color = idleTextColor;
+        if (extraText != null)
+            extraText.color = idleTextColor;
+        if (buttonImage != null)
+            buttonImage.color = idleButtonColor;
+            quitButtonText.color = idleTextColor;
+        if (backgroundImage != null)
+            backgroundImage.color = idleBackgroundColor;
+
         if (DataManager.Instance != null)
             DataManager.Instance.SaveStatistics(completedFocusSessions, totalFocusTimeSpent, totalRestTimeSpent);
+
+        Debug.Log("Sessões finalizadas.");
+        Debug.Log("Sessões concluídas: " + completedFocusSessions);
+        Debug.Log("Tempo total de foco: " + totalFocusTimeSpent + "s");
+        Debug.Log("Tempo total de descanso: " + totalRestTimeSpent + "s");
     }
 }
