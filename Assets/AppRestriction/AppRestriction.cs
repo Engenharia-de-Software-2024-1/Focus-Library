@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using AppRestriction.Bindings;
 using UnityEngine;
+using AppRestriction.Models;
 
 namespace AppRestriction
 {
@@ -13,7 +14,7 @@ namespace AppRestriction
             binding = getNativeBinding();
         }
 
-        public List<string> GetInstalledApps() 
+        public List<ApplicationInfo> GetInstalledApps() 
         {
             var apps = binding.GetInstalledApps();
             Debug.Log("apps: " + apps.Count);

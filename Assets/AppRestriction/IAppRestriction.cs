@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using AppRestriction.Models;
 
 namespace AppRestriction
 {
     public interface IAppRestriction
     {
-        List<string> GetInstalledApps();
+        List<ApplicationInfo> GetInstalledApps();
     }
 }
