@@ -11,7 +11,12 @@ class AppRestriction (
     private val context: Context = context;
 
     fun getInstalledApps(): List<ApplicationInfo> {
-        return context.packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
+        val apps = context.packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
+
+        return apps.filter { appInfo ->
+            (appInfo.flags and ApplicationInfo.FLAG_SYSTEM) == 0 &&
+            (appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) == 0
+        }
     }
 
     fun getAppName(appInfo: ApplicationInfo): String {
