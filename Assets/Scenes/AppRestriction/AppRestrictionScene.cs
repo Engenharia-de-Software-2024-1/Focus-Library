@@ -25,17 +25,8 @@ public class AppRestrictionScene : MonoBehaviour
             
             appObject.GetComponentInChildren<Image>().sprite = Sprite.Create(app.Icon, new Rect(0, 0, app.Icon.width, app.Icon.height), new Vector2(0.5f, 0.5f));
             
-            void doThat()
-            {
-                foreach (var restrictedApp in AppRestriction.RestrictedApps.GetRestrictedApps())
-                {
-                    Debug.Log("restrictedApp.name: " + restrictedApp.Name);
-                }
-            }
-
-            appObject.OnEnable += () => { doThat(); AppRestriction.RestrictedApps.AddRestrictedApp(app); };
-            appObject.OnDisable += () => { doThat(); AppRestriction.RestrictedApps.RemoveRestrictedApp(app); };
-
+            appObject.OnEnable += () => { AppRestriction.RestrictedApps.AddRestrictedApp(app); };
+            appObject.OnDisable += () => { AppRestriction.RestrictedApps.RemoveRestrictedApp(app); };
         }
     }
 }
