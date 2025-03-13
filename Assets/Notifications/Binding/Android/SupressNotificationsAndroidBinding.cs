@@ -1,4 +1,4 @@
-
+#if UNITY_ANDROID || UNITY_EDITOR
 using UnityEngine;
 
 namespace Notifications.Binding
@@ -16,5 +16,10 @@ namespace Notifications.Binding
         }
 
         public void SupressAllNotifications() => supressNotifications.CallStatic("supressAllNotifications", context);
+
+        public void AskForNotificationPolicyAccess() => supressNotifications.CallStatic("askForNotificationPolicyAccess", context);
+
+        public bool IsNotificationPolicyAccessGranted() => supressNotifications.CallStatic<bool>("isNotificationPolicyAccessGranted", context);
     }
 }
+#endif

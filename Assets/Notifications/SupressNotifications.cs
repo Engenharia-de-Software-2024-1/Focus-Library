@@ -10,6 +10,10 @@ namespace Notifications
 
         public void SupressAllNotifications() => binding.SupressAllNotifications();
         
+        public void AskForNotificationPolicyAccess() => binding.AskForNotificationPolicyAccess();
+
+        public bool IsNotificationPolicyAccessGranted() => binding.IsNotificationPolicyAccessGranted();
+
         private ISupressNotificationsBinding getBinding()
         {
             ISupressNotificationsBinding binding;
