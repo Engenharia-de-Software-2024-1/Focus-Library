@@ -14,12 +14,7 @@ namespace AppRestriction
             binding = getNativeBinding();
         }
 
-        public List<ApplicationInfo> GetInstalledApps() 
-        {
-            var apps = binding.GetInstalledApps();
-            Debug.Log("apps: " + apps.Count);
-            return apps;
-        }
+        public List<ApplicationInfo> GetInstalledApps() => binding.GetInstalledApps();
 
         private IAppRestrictionBinding getNativeBinding() 
         {

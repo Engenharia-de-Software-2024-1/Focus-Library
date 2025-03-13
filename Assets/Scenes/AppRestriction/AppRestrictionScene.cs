@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AppRestriction.Models;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class AppRestrictionScene : MonoBehaviour
 {
@@ -21,8 +22,20 @@ public class AppRestrictionScene : MonoBehaviour
         {
             var appObject = Instantiate(appRestrictionPrefab);
             appObject.transform.SetParent(appsContent.transform, false);
-            Debug.Log("app.name: " + app.Name);
+            
             appObject.GetComponentInChildren<Image>().sprite = Sprite.Create(app.Icon, new Rect(0, 0, app.Icon.width, app.Icon.height), new Vector2(0.5f, 0.5f));
+            
+            void doThat()
+            {
+                foreach (var restrictedApp in AppRestriction.RestrictedApps.GetRestrictedApps())
+                {
+                    Debug.Log("restrictedApp.name: " + restrictedApp.Name);
+                }
+            }
+
+            appObject.OnEnable += () => { doThat(); AppRestriction.RestrictedApps.AddRestrictedApp(app); };
+            appObject.OnDisable += () => { doThat(); AppRestriction.RestrictedApps.RemoveRestrictedApp(app); };
+
         }
     }
 }

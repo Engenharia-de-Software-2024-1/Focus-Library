@@ -25,16 +25,27 @@ public class ToggleButton : MonoBehaviour
     public float leftX = 0;
     public float rightX = 155;
 
+    public Action OnDisable;
+    public Action OnEnable;
+
     public void Toggle() 
     {
-        button.interactable = false;
         var nextValue = value == 0 ? 1 : 0;
+        if (nextValue == 0) 
+        {
+            OnDisable.Invoke();
+        } 
+        else 
+        {
+            OnEnable.Invoke();
+        }
         setVisuals(nextValue);
         StartCoroutine(AnimateSlider(nextValue));
     }
 
     private IEnumerator AnimateSlider(float nextValue)
         {
+            button.interactable = false;
             float startValue = value;
             float endValue = nextValue;
 
