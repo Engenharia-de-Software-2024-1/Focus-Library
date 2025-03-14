@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using AppRestriction.Models;
-using UnityEngine;
 
 namespace AppRestriction
 {
-    public class RestrictedApps : MonoBehaviour
+    public class RestrictedApps
     {
         private static List<ApplicationInfo> restrictedApps = new();
         public static void AddRestrictedApp(ApplicationInfo app) => restrictedApps.Add(app);

@@ -19,6 +19,14 @@ class AppRestriction (
         }
     }
 
+    fun getRunningApps(): List<ApplicationInfo> {
+        val apps = getInstalledApps()
+
+        return apps.filter { appInfo -> 
+            (appInfo.flags and ApplicationInfo.FLAG_STOPPED) == 0
+        }
+    }
+
     fun getAppName(appInfo: ApplicationInfo): String {
         return context.packageManager.getApplicationLabel(appInfo).toString()
     }

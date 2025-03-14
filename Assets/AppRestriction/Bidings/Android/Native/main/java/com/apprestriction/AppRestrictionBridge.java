@@ -25,6 +25,10 @@ public class AppRestrictionBridge {
         return appRestriction.getInstalledApps();
     }
 
+    public static List<ApplicationInfo> getRunningApps() {
+        return appRestriction.getRunningApps();
+    }
+
     public static String getAppName(ApplicationInfo appInfo) {
         return appRestriction.getAppName(appInfo);
     }

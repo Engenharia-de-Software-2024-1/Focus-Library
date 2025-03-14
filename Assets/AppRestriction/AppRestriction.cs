@@ -16,6 +16,8 @@ namespace AppRestriction
 
         public List<ApplicationInfo> GetInstalledApps() => binding.GetInstalledApps();
 
+        public List<ApplicationInfo> GetRunningApps() => binding.GetRunningApps();
+
         private IAppRestrictionBinding getNativeBinding() 
         {
             IAppRestrictionBinding binding; 

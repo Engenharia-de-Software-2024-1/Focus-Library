@@ -41,6 +41,29 @@ namespace AppRestriction.Bindings
             return response;
         }
 
+        public List<ApplicationInfo> GetRunningApps() {
+            var response = new List<ApplicationInfo>();
+
+            var instaledApps = bridge.CallStatic<AndroidJavaObject>("getRunningApps");
+            var size = instaledApps.Call<int>("size");
+
+            for (int i = 0; i < size; i++)
+            {
+                var app = instaledApps.Call<AndroidJavaObject>("get", i);
+                
+                var applicationInfo = new ApplicationInfo
+                {
+                    Name = bridge.CallStatic<string>("getAppName", app),
+                    ProcessName = bridge.CallStatic<string>("getAppProcessName", app),
+                    Icon = toTexture2D(bridge.CallStatic<byte[]>("getAppIcon", app)),
+                };
+
+                response.Add(applicationInfo);
+            }
+
+            return response;
+        }
+
         private Texture2D toTexture2D(byte[] iconBytes)
         {
             Texture2D texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
