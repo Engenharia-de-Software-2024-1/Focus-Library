@@ -870,8 +870,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8366fe82b32316a44bf2e1d3ac993df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  focusTime: 15000
+  focusTime: 1500
   restTime: 300
+  longRestTime: 1800
   totalSessions: 1
 --- !u!4 &1321443047
 Transform:
