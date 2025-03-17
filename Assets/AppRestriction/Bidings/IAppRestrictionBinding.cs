@@ -6,6 +6,6 @@ namespace AppRestriction.Bindings
     public interface IAppRestrictionBinding
     {
         List<ApplicationInfo> GetInstalledApps();
-        List<ApplicationInfo> GetRunningApps();
+        List<string> GetRunningAppsNames();
     }
 }

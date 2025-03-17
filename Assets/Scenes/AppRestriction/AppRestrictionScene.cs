@@ -1,22 +1,30 @@
+using System.Threading;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AppRestriction.Models;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using System.Security.Permissions;
 
 public class AppRestrictionScene : MonoBehaviour
 {
     [SerializeField] GameObject appsContent;
     [SerializeField] ToggleButton appRestrictionPrefab;
 
+    [SerializeField] float verifyInterval = 3f;
+
+    private AppRestriction.AppRestriction appRestriction;
+
     void Start()
     {
-        var appRestriction = new AppRestriction.AppRestriction();
+        appRestriction = new AppRestriction.AppRestriction();
         var apps = appRestriction.GetInstalledApps();
-        setupAppRestriction(apps);
+        setupAppsContent(apps);
+        appRestriction.OnRestrictedAppRunning += (app) => Debug.Log("Restricted app running: " + app); 
     }
 
-    void setupAppRestriction(List<ApplicationInfo> apps)
+    void setupAppsContent(List<ApplicationInfo> apps)
     {
         foreach (var app in apps)
         {
@@ -27,6 +35,19 @@ public class AppRestrictionScene : MonoBehaviour
             
             appObject.OnEnable += () => { AppRestriction.RestrictedApps.AddRestrictedApp(app); };
             appObject.OnDisable += () => { AppRestriction.RestrictedApps.RemoveRestrictedApp(app); };
+        }
+    }
+
+    public void StartVerifying() => StartCoroutine(VerifyEverySeconds(verifyInterval));
+
+    IEnumerator VerifyEverySeconds(float seconds)
+    {
+        Application.runInBackground = true;
+        while (true)
+        {
+            yield return new WaitForSeconds(seconds);
+
+            appRestriction.VerifyRestrictedAppsRunning();
         }
     }
 }

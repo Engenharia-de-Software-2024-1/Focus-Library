@@ -4,6 +4,7 @@ import android.content.pm.PackageManager
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.graphics.drawable.Drawable
+import android.app.ActivityManager
 
 class AppRestriction (
     context: Context
@@ -19,11 +20,12 @@ class AppRestriction (
         }
     }
 
-    fun getRunningApps(): List<ApplicationInfo> {
-        val apps = getInstalledApps()
-
-        return apps.filter { appInfo -> 
-            (appInfo.flags and ApplicationInfo.FLAG_STOPPED) == 0
+    fun getRunningAppsNames(): List<String> {
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as (ActivityManager)
+        val apps = activityManager.getRunningAppProcesses()
+        
+        return apps.map { appProcessInfo ->
+            appProcessInfo.processName
         }
     }
 

@@ -29,11 +29,11 @@ namespace AppRestriction.Bindings
                 var app = instaledApps.Call<AndroidJavaObject>("get", i);
                 
                 var applicationInfo = new ApplicationInfo
-                {
-                    Name = bridge.CallStatic<string>("getAppName", app),
-                    ProcessName = bridge.CallStatic<string>("getAppProcessName", app),
-                    Icon = toTexture2D(bridge.CallStatic<byte[]>("getAppIcon", app)),
-                };
+                (
+                    bridge.CallStatic<string>("getAppName", app),
+                    bridge.CallStatic<string>("getAppProcessName", app),
+                    toTexture2D(bridge.CallStatic<byte[]>("getAppIcon", app))
+                );
 
                 response.Add(applicationInfo);
             }
@@ -41,24 +41,17 @@ namespace AppRestriction.Bindings
             return response;
         }
 
-        public List<ApplicationInfo> GetRunningApps() {
-            var response = new List<ApplicationInfo>();
+        public List<string> GetRunningAppsNames() {
+            var response = new List<string>();
 
-            var instaledApps = bridge.CallStatic<AndroidJavaObject>("getRunningApps");
+            var instaledApps = bridge.CallStatic<AndroidJavaObject>("getRunningAppsNames");
             var size = instaledApps.Call<int>("size");
 
             for (int i = 0; i < size; i++)
             {
-                var app = instaledApps.Call<AndroidJavaObject>("get", i);
+                var app = instaledApps.Call<string>("get", i);
                 
-                var applicationInfo = new ApplicationInfo
-                {
-                    Name = bridge.CallStatic<string>("getAppName", app),
-                    ProcessName = bridge.CallStatic<string>("getAppProcessName", app),
-                    Icon = toTexture2D(bridge.CallStatic<byte[]>("getAppIcon", app)),
-                };
-
-                response.Add(applicationInfo);
+                response.Add(app);
             }
 
             return response;

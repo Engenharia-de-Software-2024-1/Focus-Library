@@ -6,6 +6,6 @@ namespace AppRestriction
     public interface IAppRestriction
     {
         List<ApplicationInfo> GetInstalledApps();
-        List<ApplicationInfo> GetRunningApps();
+        List<string> GetRunningAppsNames();
     }
 }
