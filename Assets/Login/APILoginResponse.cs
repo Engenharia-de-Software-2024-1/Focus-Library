@@ -1,7 +1,7 @@
 [System.Serializable]
 public class APILoginResponse
 {
-    public string token;
+    public string acessToken;
     public string refreshToken;
-   // public string error;
+    public string error;
 }

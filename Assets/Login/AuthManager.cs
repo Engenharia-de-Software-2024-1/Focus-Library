@@ -15,27 +15,25 @@ public class AuthManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Mantém entre cenas importante
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); // destruir para evitar dubplicatas
+            Destroy(gameObject);
         }
     }
 
     public async void HandleLogin(string username, string password)
     {
-        if (!IsValidEmail(username))
-        {
-         //   loginUI.ShowError("Formato de e-mail inválido!");
-            return;
-        }
-
         using (HttpClient client = new HttpClient())
         {
             try
             {
-                LoginData loginData = new LoginData { Email = username, Password = password };
+                LoginData loginData = new LoginData { 
+                    username = username, 
+                    senha = password 
+                };
+
                 string json = JsonUtility.ToJson(loginData);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -44,34 +42,29 @@ public class AuthManager : MonoBehaviour
 
                 APILoginResponse apiResponse = JsonUtility.FromJson<APILoginResponse>(responseJson);
 
-                if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(apiResponse.token))
+                if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(apiResponse.acessToken))
                 {
-                    Debug.Log("Token: " + apiResponse.token);
-                    SaveTokens(apiResponse.token, apiResponse.refreshToken);
+                    Debug.Log("Login bem-sucedido!");
+                    SaveTokens(apiResponse.acessToken, apiResponse.refreshToken);
                     loginUI.ClearFields();
                 }
                 else
                 {
-                //    loginUI.ShowError(apiResponse.error ?? "Erro desconhecido");
+                    // Tratamento específico para 403 Forbidden
+                    if (response.StatusCode == System.Net.HttpStatusCode.Forbidden)
+                    {
+                        Debug.LogError("Login Inválido"); // Ou usar um popup/UI alternativo
+                    }
+                    else
+                    {
+                        Debug.LogError($"Erro: {response.StatusCode}");
+                    }
                 }
             }
             catch (HttpRequestException ex)
             {
-             //   loginUI.ShowError($"Erro de conexão: {ex.Message}");
+                Debug.LogError($"Erro de conexão: {ex.Message}");
             }
-        }
-    }
-
-    private bool IsValidEmail(string email)
-    {
-        try
-        {
-            var addr = new System.Net.Mail.MailAddress(email);
-            return addr.Address == email;
-        }
-        catch
-        {
-            return false;
         }
     }
 
@@ -85,7 +78,7 @@ public class AuthManager : MonoBehaviour
     [System.Serializable]
     private class LoginData
     {
-        public string Email;
-        public string Password;
+        public string username;
+        public string senha;
     }
 }

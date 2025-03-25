@@ -8,21 +8,19 @@ public class LoginUIHandler : MonoBehaviour
     [SerializeField] private TMP_InputField usernameInput;
     [SerializeField] private TMP_InputField passwordInput;
     [SerializeField] private Button loginButton;
-   // [SerializeField] private TextMeshProUGUI errorText;
 
     private void Start()
     {
-        // Verifica componentes atribuídos
-        if (usernameInput == null || passwordInput == null || loginButton == null ) // || errorText == null)
+        // Verificação básica dos componentes
+        if (usernameInput == null || passwordInput == null || loginButton == null)
         {
             Debug.LogError("Componentes de UI não configurados no Inspector!");
-            enabled = false; // Desativa o script
+            enabled = false;
             return;
         }
 
         passwordInput.contentType = TMP_InputField.ContentType.Password;
         loginButton.onClick.AddListener(OnLoginClicked);
-       // errorText.gameObject.SetActive(false);
     }
 
     public void OnLoginClicked()
@@ -30,32 +28,20 @@ public class LoginUIHandler : MonoBehaviour
         string username = usernameInput.text.Trim();
         string password = passwordInput.text;
 
-        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+        // Chama o AuthManager diretamente (validação feita no servidor)
+        if (AuthManager.Instance != null)
         {
-          //  ShowError("Preencha todos os campos!");
-            return;
+            AuthManager.Instance.HandleLogin(username, password);
         }
-
-        // Verifica se o AuthManager está acessível
-        if (AuthManager.Instance == null)
+        else
         {
-            Debug.LogError("AuthManager não encontrado na cena!");
-            return;
+            Debug.LogError("AuthManager não encontrado!");
         }
-
-        AuthManager.Instance.HandleLogin(username, password);
     }
-
-    //public void ShowError(string message)
-   // {
-        //errorText.text = message;
-        //errorText.gameObject.SetActive(true);
-   // }
 
     public void ClearFields()
     {
         usernameInput.text = "";
         passwordInput.text = "";
-       // errorText.gameObject.SetActive(false);
     }
 }
