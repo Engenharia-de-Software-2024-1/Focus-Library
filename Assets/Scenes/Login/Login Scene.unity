@@ -1371,7 +1371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 948436684}
   - component: {fileID: 948436683}
-  - component: {fileID: 948436682}
+  - component: {fileID: 948436685}
   m_Layer: 0
   m_Name: AuthManager
   m_TagString: Untagged
@@ -1379,22 +1379,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &948436682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 948436681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 134fc6b4687d1214cab16356df4a0707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  usernameInput: {fileID: 1343186487}
-  passwordInput: {fileID: 528269897}
-  loginButton: {fileID: 42794602}
-  errorText: {fileID: 1627409748}
 --- !u!114 &948436683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,7 +1392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loginEndpoint: https://1135-177-73-205-176.ngrok-free.app/auth/login
-  loginUI: {fileID: 948436682}
+  loginUI: {fileID: 948436685}
 --- !u!4 &948436684
 Transform:
   m_ObjectHideFlags: 0
@@ -1424,6 +1408,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &948436685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948436681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134fc6b4687d1214cab16356df4a0707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usernameInput: {fileID: 1343186487}
+  passwordInput: {fileID: 528269897}
+  loginButton: {fileID: 42794602}
+  errorText: {fileID: 1627409748}
 --- !u!1 &1069966189
 GameObject:
   m_ObjectHideFlags: 0

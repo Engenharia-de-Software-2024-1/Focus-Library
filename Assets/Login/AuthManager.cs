@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 public class AuthManager : MonoBehaviour
 {
     public static AuthManager Instance { get; private set; }
-    // pegar o link do ngrok do comando ngrok http 8080
+    // pegar o link do ngrok do comando ngrok http 8080 link do ngrok/auth/login
     [SerializeField] private string loginEndpoint = "https://1135-177-73-205-176.ngrok-free.app/auth/login"; //"http://localhost:8080/auth/login"; 
     [SerializeField] private LoginUIHandler loginUI;
 
