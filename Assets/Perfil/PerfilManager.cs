@@ -33,11 +33,10 @@ public class PerfilManager
     /// <param name="novoUsername">Novo nome de usuário válido.</param>
     /// <param name="novoEmail">Novo e-mail válido.</param>
     /// <param name="dataNascimento">Nova data de nascimento.</param>
-    /// <param name="fotoPerfil">Nova foto de perfil (opcional).</param>
     /// <returns>Perfil atualizado.</returns>
     /// <exception cref="ArgumentNullException">Lançada se o perfil for nulo.</exception>
     /// <exception cref="ArgumentException">Lançada se o novo e-mail for inválido.</exception>
-    public async Task<Perfil> EditarPerfil(Perfil perfil, string novoUsername, string novoEmail, DateTime dataNascimento)
+    public async Task<Perfil> EditarPerfil(Perfil perfil, string novoUsername, string novoEmail, DateTime? dataNascimento)
     {
         if (perfil == null)
             throw new ArgumentNullException(nameof(perfil));
@@ -75,7 +74,36 @@ public class PerfilManager
     private async Task EnviarPerfil(Perfil perfil)
     {
         PerfilManagerDB managerDB = new PerfilManagerDB();
-        string response = await managerDB.EnviarPerfilParaRegistro(perfil);
-        Debug.Log("Resposta do registro: " + response);
+        
+        if (!string.IsNullOrEmpty(perfil.Id))
+        {
+            // Se tem ID, atualiza o perfil existente
+            string token = PlayerPrefs.GetString("JWT_TOKEN"); // Corrigido para usar JWT_TOKEN em vez de authToken
+            try
+            {
+                // Usa o método AtualizarPerfilComRefresh para atualizar o perfil e renovar o token
+                string novoToken = await managerDB.AtualizarPerfilComRefresh(perfil, token);
+                Debug.Log("Perfil atualizado e token renovado com sucesso: " + novoToken);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Erro ao atualizar perfil: {ex.Message}");
+                throw; // Propaga a exceção para tratamento na camada superior
+            }
+        }
+        else
+        {
+            // Se não tem ID, faz o registro
+            try
+            {
+                string response = await managerDB.EnviarPerfilParaRegistro(perfil);
+                Debug.Log("Resposta do registro: " + response);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Erro ao registrar perfil: {ex.Message}");
+                throw; // Propaga a exceção para tratamento na camada superior
+            }
+        }
     }
 }

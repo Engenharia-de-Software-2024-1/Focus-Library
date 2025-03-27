@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class RegistroUIManager : MonoBehaviour
 {
     public TMP_InputField inputUsername;
@@ -13,6 +14,7 @@ public class RegistroUIManager : MonoBehaviour
     public TMP_InputField inputSenha;
     public TMP_InputField inputConfirmarSenha;
     public Button botaoRegistrar;
+
     private PerfilManager perfilManager;
     private CadastroCheckFields checker;
     private void Start()
@@ -28,6 +30,7 @@ public class RegistroUIManager : MonoBehaviour
         string email = inputEmail.text.Trim();
         string senha = inputSenha.text;
         string confirmarSenha = inputConfirmarSenha.text;
+
 
         Debug.Log(username);
         Debug.Log(email);
@@ -48,3 +51,4 @@ public class RegistroUIManager : MonoBehaviour
         }
     }
 }
+
