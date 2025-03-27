@@ -41,7 +41,7 @@ public class LoginUIHandler : MonoBehaviour
         if (AuthManager.Instance != null)
         {
             errorText.text = ""; // Limpa erros anteriores
-            AuthManager.Instance.HandleLogin(username, password);
+            AuthManager.Instance.HandleLogin(username, password, ClearFields, ShowErrorMessage);
         }
         else
         {

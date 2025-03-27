@@ -2,13 +2,12 @@ using UnityEngine;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System;
 
 public class AuthManager : MonoBehaviour
 {
     public static AuthManager Instance { get; private set; }
-    // pegar o link do ngrok do comando ngrok http 8080 link do ngrok/auth/login
-    [SerializeField] private string loginEndpoint = "https://1135-177-73-205-176.ngrok-free.app/auth/login"; //"http://localhost:8080/auth/login"; 
-    [SerializeField] private LoginUIHandler loginUI;
+    [SerializeField] private string loginEndpoint = "http://localhost:8080/auth/login";
 
     private void Awake()
     {
@@ -23,7 +22,7 @@ public class AuthManager : MonoBehaviour
         }
     }
 
-    public async void HandleLogin(string username, string password)
+    public async void HandleLogin(string username, string password, Action onSuccess = null, Action<string> onFailure = null)
     {
         using (HttpClient client = new HttpClient())
         {
@@ -46,7 +45,7 @@ public class AuthManager : MonoBehaviour
                 {
                     Debug.Log("Login bem-sucedido!");
                     SaveTokens(apiResponse.acessToken, apiResponse.refreshToken);
-                    loginUI.ClearFields();
+                    onSuccess?.Invoke();
                 }
                 else
                 {
@@ -55,19 +54,20 @@ public class AuthManager : MonoBehaviour
                     {
                         
                         Debug.LogError("Login Inválido");
-                        loginUI.ShowErrorMessage("Login Invalido");
+                        onFailure?.Invoke("Login Invalido");
                         
                     }
                     else
                     {
                         Debug.LogError($"Erro: {response.StatusCode}");
+                        onFailure?.Invoke($"Erro: {response.StatusCode}");
                     }
                 }
             }
             catch (HttpRequestException ex)
             {
                 Debug.LogError($"Erro de conexão: {ex.Message}");
-                
+                onFailure?.Invoke($"Erro de conexão: {ex.Message}");
             }
         }
     }
