@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d5d729d9aa8f0438e85f64d4d441dccf
+=======
+guid: 0ededd757cdb95a4ebd7f235fb084ee8
+>>>>>>> 085ba08 (Tela Estante)
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
