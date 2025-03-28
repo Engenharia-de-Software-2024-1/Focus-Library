@@ -12,11 +12,12 @@ public class RegistroUIManager : MonoBehaviour
     public TMP_InputField inputSenha;
     public TMP_InputField inputConfirmarSenha;
     public Button botaoRegistrar;
-    
     private PerfilManager perfilManager;
-
+    private CadastroCheckFields checker;
     private void Start()
     {
+
+        checker = new CadastroCheckFields();
         perfilManager = new PerfilManager();
         botaoRegistrar.onClick.AddListener(() => StartCoroutine(TentarRegistrar()));
     }
@@ -28,22 +29,11 @@ public class RegistroUIManager : MonoBehaviour
         string senha = inputSenha.text;
         string confirmarSenha = inputConfirmarSenha.text;
 
-        if (senha != confirmarSenha)
-        {
-            Debug.LogError("As senhas não coincidem!");
-            yield break;
-        }
+        if(!checker.Check(username, email, senha, confirmarSenha)) yield return null;
 
-        try
-        {
-            Task<Perfil> tarefa = perfilManager.CriarPerfil(username, email, senha);
-            while (!tarefa.IsCompleted) yield return null;
-            
-            Debug.Log("Registro concluído com sucesso!");
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Erro no registro: {ex.Message}");
-        }
+        Task<Perfil> tarefa = perfilManager.CriarPerfil(username, email, senha);
+        while (!tarefa.IsCompleted) yield return null;
+        
+        Debug.Log("Registro concluído com sucesso!");
     }
 }
