@@ -37,7 +37,7 @@ public class PerfilManager
     /// <returns>Perfil atualizado.</returns>
     /// <exception cref="ArgumentNullException">Lançada se o perfil for nulo.</exception>
     /// <exception cref="ArgumentException">Lançada se o novo e-mail for inválido.</exception>
-    public async Task<Perfil> EditarPerfil(Perfil perfil, string novoUsername, string novoEmail, DateTime dataNascimento, string fotoPerfil)
+    public async Task<Perfil> EditarPerfil(Perfil perfil, string novoUsername, string novoEmail, DateTime dataNascimento)
     {
         if (perfil == null)
             throw new ArgumentNullException(nameof(perfil));
@@ -45,7 +45,7 @@ public class PerfilManager
         if (!ValidarEmail(novoEmail))
             throw new ArgumentException("Formato de e-mail inválido.");
 
-        perfil.AtualizarPerfil(novoUsername, novoEmail, dataNascimento, fotoPerfil);
+        perfil.AtualizarPerfil(novoUsername, novoEmail, dataNascimento);
         await EnviarPerfil(perfil);
         return perfil;
     }
