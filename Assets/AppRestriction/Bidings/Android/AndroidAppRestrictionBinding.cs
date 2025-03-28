@@ -21,12 +21,12 @@ namespace AppRestriction.Bindings
         {
             var response = new List<ApplicationInfo>();
 
-            var instaledApps = bridge.CallStatic<AndroidJavaObject>("getInstalledApps");
-            var size = instaledApps.Call<int>("size");
+            var installedApps = bridge.CallStatic<AndroidJavaObject>("getInstalledApps");
+            var size = installedApps.Call<int>("size");
 
             for (int i = 0; i < size; i++)
             {
-                var app = instaledApps.Call<AndroidJavaObject>("get", i);
+                var app = installedApps.Call<AndroidJavaObject>("get", i);
                 
                 var applicationInfo = new ApplicationInfo
                 (
