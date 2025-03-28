@@ -44,12 +44,12 @@ namespace AppRestriction.Bindings
         public List<string> GetRunningAppsNames() {
             var response = new List<string>();
 
-            var instaledApps = bridge.CallStatic<AndroidJavaObject>("getRunningAppsNames");
-            var size = instaledApps.Call<int>("size");
+            var runningApps = bridge.CallStatic<AndroidJavaObject>("getRunningAppsNames");
+            var size = runningApps.Call<int>("size");
 
             for (int i = 0; i < size; i++)
             {
-                var app = instaledApps.Call<string>("get", i);
+                var app = runningApps.Call<string>("get", i);
                 
                 response.Add(app);
             }
