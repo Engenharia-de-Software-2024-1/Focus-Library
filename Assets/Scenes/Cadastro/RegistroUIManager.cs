@@ -16,24 +16,33 @@ public class RegistroUIManager : MonoBehaviour
     private CadastroCheckFields checker;
     private void Start()
     {
-
         checker = new CadastroCheckFields();
         perfilManager = new PerfilManager();
-        botaoRegistrar.onClick.AddListener(() => StartCoroutine(TentarRegistrar()));
+        // botaoRegistrar.onClick.AddListener(() => StartCoroutine(TentarRegistrar()));
     }
 
-    private IEnumerator TentarRegistrar()
+    public async void TentarRegistrar()
     {
         string username = inputUsername.text.Trim();
         string email = inputEmail.text.Trim();
         string senha = inputSenha.text;
         string confirmarSenha = inputConfirmarSenha.text;
 
-        if(!checker.Check(username, email, senha, confirmarSenha)) yield return null;
+        Debug.Log(username);
+        Debug.Log(email);
+        Debug.Log(senha);
+        Debug.Log(confirmarSenha);
 
-        Task<Perfil> tarefa = perfilManager.CriarPerfil(username, email, senha);
-        while (!tarefa.IsCompleted) yield return null;
-        
-        Debug.Log("Registro concluído com sucesso!");
+        if(!checker.Check(username, email, senha, confirmarSenha)) return;
+
+        try
+        {
+            Perfil perfil = await perfilManager.CriarPerfil(username, email, senha);
+            Debug.Log("Registro concluído com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Erro ao registrar: {ex.Message}");
+        }
     }
 }
