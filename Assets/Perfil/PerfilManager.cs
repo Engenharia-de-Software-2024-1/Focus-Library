@@ -36,7 +36,11 @@ public class PerfilManager
     /// <returns>Perfil atualizado.</returns>
     /// <exception cref="ArgumentNullException">Lançada se o perfil for nulo.</exception>
     /// <exception cref="ArgumentException">Lançada se o novo e-mail for inválido.</exception>
+<<<<<<< HEAD:Assets/Perfil/PerfilManager.cs
     public async Task<Perfil> EditarPerfil(Perfil perfil, string novoUsername, string novoEmail, DateTime? dataNascimento)
+=======
+    public async Task<Perfil> EditarPerfil(Perfil perfil, string novoUsername, string novoEmail, DateTime dataNascimento)
+>>>>>>> 15b7abe (falta a logica de ober o perfil):Assets/Cadastro/PerfilManager.cs
     {
         if (perfil == null)
             throw new ArgumentNullException(nameof(perfil));

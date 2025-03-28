@@ -1,5 +1,8 @@
 using UnityEngine;
+<<<<<<< HEAD
 using UnityEngine.SceneManagement;
+=======
+>>>>>>> 15b7abe (falta a logica de ober o perfil)
 using UnityEngine.UI;
 using TMPro;
 using System;
@@ -55,8 +58,11 @@ public class PerfilEditScreen : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     public void OnBackClicked() => SceneManager.LoadScene("Configuracoes Scene");
 
+=======
+>>>>>>> 15b7abe (falta a logica de ober o perfil)
     private Perfil ObterPerfilAtual()
     {
         // pegar um usuario com o get no http://localhost:8080/usuario passando o token recebido no login
