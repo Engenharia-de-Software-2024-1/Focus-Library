@@ -28,8 +28,6 @@ namespace AppRestriction
 
             foreach (var app in runningApps)
             {
-                Debug.Log("AppRunning: " + app);
-
                 if (restrictedApps.ContainsKey(app) && restrictedApps[app])
                 {
                     OnRestrictedAppRunning.Invoke(app);
