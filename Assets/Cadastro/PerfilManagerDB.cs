@@ -11,6 +11,7 @@ public class PerfilDTO
     public string username;
     public string email;
     public string dataNascimento;
+    public string senha;
     
 }
 
@@ -27,8 +28,14 @@ public class PerfilManagerDB
             username = perfil.Username,
             email = perfil.Email,
             dataNascimento = perfil.DataNascimento.ToString("dd-MM-yyyy"),
-            
+            senha = perfil.Senha
         };
+
+        Debug.Log("----@----");
+        Debug.Log(perfilData.username);
+        Debug.Log(perfilData.email);
+        Debug.Log(perfilData.dataNascimento);
+        Debug.Log(perfilData.senha);
 
         // Serializa usando JsonUtility
         string json = JsonUtility.ToJson(perfilData);
@@ -36,7 +43,7 @@ public class PerfilManagerDB
         using (HttpClient client = new HttpClient())
         {
             var content = new StringContent(json, Encoding.UTF8, "application/json"); // colocar link do ngrok.
-            HttpResponseMessage response = await client.PostAsync("http://localhost:8080/auth/registrar", content);
+            HttpResponseMessage response = await client.PostAsync(Constants.BACKEND_URL + "/auth/registrar", content);
             string responseBody = await response.Content.ReadAsStringAsync();
 
             if (response.StatusCode != HttpStatusCode.Created)
