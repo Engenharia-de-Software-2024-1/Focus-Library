@@ -338,7 +338,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 106261774}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1760690029}
+        m_TargetAssemblyTypeName: TimerScene, Assembly-CSharp
+        m_MethodName: OnNextButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &106261774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,7 +607,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 292306736}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1760690029}
+        m_TargetAssemblyTypeName: TimerScene, Assembly-CSharp
+        m_MethodName: IncreaseSessionQtd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &292306736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1120,7 +1144,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 659705152}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1760690029}
+        m_TargetAssemblyTypeName: TimerScene, Assembly-CSharp
+        m_MethodName: OnBackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &659705152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1391,7 +1427,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1021322080}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1760690029}
+        m_TargetAssemblyTypeName: TimerScene, Assembly-CSharp
+        m_MethodName: DecreaseFocusTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1021322080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1734,7 +1782,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.5, y: 1.6}
+  m_AnchoredPosition: {x: -1.5, y: 1.6000004}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338184321
@@ -2050,7 +2098,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1348400164}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1760690029}
+        m_TargetAssemblyTypeName: TimerScene, Assembly-CSharp
+        m_MethodName: IncreaseFocusTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1348400164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2305,7 +2365,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1611741403}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1760690029}
+        m_TargetAssemblyTypeName: TimerScene, Assembly-CSharp
+        m_MethodName: DecreaseSessionQtd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1611741403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2541,6 +2613,54 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1760690028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1760690030}
+  - component: {fileID: 1760690029}
+  m_Layer: 0
+  m_Name: ConfigTimerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1760690029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760690028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b9a022e9d6bb4c9a868398c5521cb7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  focusTimeText: {fileID: 1204365065}
+  restTimeText: {fileID: 433256126}
+  longRestTimeText: {fileID: 103571195}
+  sessionQtdText: {fileID: 1884681028}
+--- !u!4 &1760690030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760690028}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4948119, y: 0.98978657, z: 408.84607}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3093,8 +3213,8 @@ Canvas:
   m_GameObject: {fileID: 2111209765}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 2115189429}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3241,3 +3361,4 @@ SceneRoots:
   - {fileID: 2111209769}
   - {fileID: 1723943161}
   - {fileID: 403302418}
+  - {fileID: 1760690030}
