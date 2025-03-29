@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,11 +42,18 @@ public class AuthManager : MonoBehaviour
 
                 APILoginResponse apiResponse = JsonUtility.FromJson<APILoginResponse>(responseJson);
 
-                if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(apiResponse.acessToken))
+                if(string.IsNullOrEmpty(apiResponse.acessToken)){
+                    Debug.Log("O token não veio :(");
+                }else{
+                    Debug.Log("O token veio :)");
+                }
+
+                if (response.IsSuccessStatusCode)
                 {
                     Debug.Log("Login bem-sucedido!");
                     SaveTokens(apiResponse.acessToken, apiResponse.refreshToken);
                     onSuccess?.Invoke();
+                    SceneManager.LoadScene("Estante Scene");
                 }
                 else
                 {

@@ -203,7 +203,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 42794603}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 755060122}
+        m_TargetAssemblyTypeName: LoginUIHandler, Assembly-CSharp
+        m_MethodName: OnLoginClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &42794603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,7 +419,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 140423466}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 755060121}
+        m_TargetAssemblyTypeName: GoToRegister, Assembly-CSharp
+        m_MethodName: ChangeSceneToRegister
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &140423466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,6 +1101,8 @@ GameObject:
   - component: {fileID: 755060119}
   - component: {fileID: 755060118}
   - component: {fileID: 755060117}
+  - component: {fileID: 755060121}
+  - component: {fileID: 755060122}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1173,6 +1199,34 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1080, y: 1920.0001}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &755060121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755060116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93786478bd95bcc0dbda0019b7c3cddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &755060122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755060116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134fc6b4687d1214cab16356df4a0707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usernameInput: {fileID: 0}
+  passwordInput: {fileID: 0}
+  loginButton: {fileID: 0}
+  errorText: {fileID: 0}
 --- !u!1 &848423336
 GameObject:
   m_ObjectHideFlags: 0

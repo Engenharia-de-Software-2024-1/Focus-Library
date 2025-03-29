@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RegistroUIManager : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class RegistroUIManager : MonoBehaviour
         {
             Perfil perfil = await perfilManager.CriarPerfil(username, email, senha);
             Debug.Log("Registro concluído com sucesso!");
+            SceneManager.LoadScene("Login Scene");
         }
         catch (Exception ex)
         {

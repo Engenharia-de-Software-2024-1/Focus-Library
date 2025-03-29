@@ -6,9 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Login Scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/AppRestriction/AppRestriction.unity
     guid: 86e75b4f68fbd43879e16145ccf53082
+  - enabled: 1
+    path: Assets/Scenes/Estante Scene.unity
+    guid: ffa469d6fcec3d6498f355b47d9f35d8
+  - enabled: 1
+    path: Assets/Scenes/Cadastro/TelaCadastro.unity
+    guid: a7b89230302d940429288f1d35d412ab
+  - enabled: 1
+    path: Assets/Scenes/EdicaoPerfil/Edicao Perfil Scene.unity
+    guid: 0d0fb309702140a47bc220b0e893dbfa
+  - enabled: 1
+    path: Assets/Scenes/Login/Login Scene.unity
+    guid: e921b59943524425181c2330c7afb787
+  - enabled: 1
+    path: Assets/Scenes/Timer.unity
+    guid: 76660605ddaedcc48b4e863a9e1b891b
   m_configObjects: {}
