@@ -7,7 +7,7 @@ using System;
 public class AuthManager : MonoBehaviour
 {
     public static AuthManager Instance { get; private set; }
-    [SerializeField] private string loginEndpoint = "http://localhost:8080/auth/login";
+    [SerializeField] private string loginEndpoint = Constants.BACKEND_URL + "/auth/login";
 
     private void Awake()
     {
