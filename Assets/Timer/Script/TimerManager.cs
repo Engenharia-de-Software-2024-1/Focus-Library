@@ -76,5 +76,11 @@ public class TimerManager : MonoBehaviour {
     private void EndSession() {
         CurrentState = TimerState.Idle;
         CurrentTime = 0;
+        if (DataManager.Instance != null) {
+            DataManager.Instance.SetStatistics(completedSessions, totalFocusTime, totalRestTime);
+        }else {
+            Debug.LogWarning("DataManager não foi encontrado na cena!");
+        }
+
     }
 }
