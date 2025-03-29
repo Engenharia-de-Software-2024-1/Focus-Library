@@ -16,16 +16,33 @@ public class PerfilEditScreen : MonoBehaviour
     private void Start()
     {
         perfilManager = new PerfilManager();
-        
         salvarButton.onClick.AddListener(SalvarPerfil);
-
-        CarregarPerfilAtual();
+        CarregarPerfilAtual(); 
     }
 
-    private void CarregarPerfilAtual()
+    private async void CarregarPerfilAtual()
     {
-        perfilAtual = ObterPerfilAtual();
+        string token = PlayerPrefs.GetString("authToken");
+        if (string.IsNullOrEmpty(token))
+        {
+            Debug.LogError("Token de autenticação não encontrado!");
+            return;
+        }
 
+        PerfilManagerDB managerDB = new PerfilManagerDB();
+        try
+        {
+            perfilAtual = await managerDB.ObterPerfil(token);
+            PreencherCampos();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Falha ao carregar perfil: {ex.Message}");
+        }
+    }
+
+    private void PreencherCampos()
+    {
         usernameInput.text = perfilAtual.Username;
         emailInput.text = perfilAtual.Email;
         dataNascimentoInput.text = perfilAtual.DataNascimento.ToString("dd/MM/yyyy");
@@ -36,15 +53,12 @@ public class PerfilEditScreen : MonoBehaviour
         try
         {
             DateTime dataNascimento = DateTime.Parse(dataNascimentoInput.text);
-
             await perfilManager.EditarPerfil(
                 perfilAtual, 
                 usernameInput.text, 
                 emailInput.text, 
                 dataNascimento
-                //
             );
-
             Debug.Log("Perfil atualizado com sucesso!");
             gameObject.SetActive(false);
         }
@@ -52,11 +66,5 @@ public class PerfilEditScreen : MonoBehaviour
         {
             Debug.LogError($"Erro ao salvar perfil: {ex.Message}");
         }
-    }
-
-    private Perfil ObterPerfilAtual()
-    {
-        // pegar um usuario com o get no http://localhost:8080/usuario passando o token recebido no login
-        return new Perfil("UsuarioExemplo", "exemplo@email.com", "senhaExemplo");
     }
 }

@@ -52,4 +52,33 @@ public class PerfilManagerDB
             return responseBody;
         }
     }
+
+    public async Task<Perfil> ObterPerfil(string token)
+    {
+        using (HttpClient client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = 
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            
+            HttpResponseMessage response = 
+                await client.GetAsync("http://localhost:8080/usuario");
+            
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+                throw new Exception($"Erro ao buscar perfil: {responseBody}");
+
+            PerfilDTO perfilData = JsonUtility.FromJson<PerfilDTO>(responseBody);
+            DateTime dataNascimento = DateTime.ParseExact(
+                perfilData.dataNascimento, 
+                "dd-MM-yyyy", 
+                System.Globalization.CultureInfo.InvariantCulture
+            );
+
+            return new Perfil(perfilData.username, perfilData.email, "senha_temporaria")
+            {
+                DataNascimento = dataNascimento
+            };
+        }
+    }
 }
