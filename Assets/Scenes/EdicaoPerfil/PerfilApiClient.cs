@@ -19,7 +19,7 @@ public class PerfilApiClient : MonoBehaviour
         try
         {
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            HttpResponseMessage response = await httpClient.GetAsync("usuario");
+            HttpResponseMessage response = await httpClient.GetAsync("");
             response.EnsureSuccessStatusCode();
             string json = await response.Content.ReadAsStringAsync();
             return JsonUtility.FromJson<Perfil>(json);
@@ -37,7 +37,7 @@ public class PerfilApiClient : MonoBehaviour
         {
             string json = JsonUtility.ToJson(perfil);
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            HttpResponseMessage response = await httpClient.PutAsync("usuario", new StringContent(json));
+            HttpResponseMessage response = await httpClient.PutAsync($"{perfil.Id}", new StringContent(json));
             response.EnsureSuccessStatusCode();
             return await response.Content.ReadAsStringAsync();
         }

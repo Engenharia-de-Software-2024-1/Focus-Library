@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 [System.Serializable]
 public class PerfilDTO
 {
+    public string id;
     public string username;
     public string email;
-    public string dataNascimento;
+    public DateTime dataNascimento;
     public string senha;
-    
 }
 
 public class PerfilManagerDB
@@ -27,14 +27,14 @@ public class PerfilManagerDB
         {
             username = perfil.Username,
             email = perfil.Email,
-            dataNascimento = perfil.DataNascimento.ToString("dd-MM-yyyy"),
+            dataNascimento = perfil.DataNascimento,
             senha = perfil.Senha
         };
 
         Debug.Log("----@----");
         Debug.Log(perfilData.username);
         Debug.Log(perfilData.email);
-        Debug.Log(perfilData.dataNascimento);
+        Debug.Log(perfilData.dataNascimento.ToString("dd-MM-yyyy"));
         Debug.Log(perfilData.senha);
 
         // Serializa usando JsonUtility
@@ -61,7 +61,7 @@ public class PerfilManagerDB
                 new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             
             HttpResponseMessage response = 
-                await client.GetAsync("http://localhost:8080/usuario");
+                await client.GetAsync(Constants.BACKEND_URL + "/usuario");
             
             string responseBody = await response.Content.ReadAsStringAsync();
 
@@ -69,16 +69,44 @@ public class PerfilManagerDB
                 throw new Exception($"Erro ao buscar perfil: {responseBody}");
 
             PerfilDTO perfilData = JsonUtility.FromJson<PerfilDTO>(responseBody);
-            DateTime dataNascimento = DateTime.ParseExact(
-                perfilData.dataNascimento, 
-                "dd-MM-yyyy", 
-                System.Globalization.CultureInfo.InvariantCulture
-            );
-
-            return new Perfil(perfilData.username, perfilData.email, "senha_temporaria")
+            
+            Perfil perfil = new Perfil(perfilData.username, perfilData.email, "senha_temporaria")
             {
-                DataNascimento = dataNascimento
+                Id = perfilData.id,
+                DataNascimento = perfilData.dataNascimento
             };
+            
+            return perfil;
+        }
+    }
+    
+    public async Task<string> AtualizarPerfil(Perfil perfil, string token)
+    {
+        PerfilDTO perfilData = new PerfilDTO
+        {
+            id = perfil.Id,
+            username = perfil.Username,
+            email = perfil.Email,
+            dataNascimento = perfil.DataNascimento
+        };
+
+        string json = JsonUtility.ToJson(perfilData);
+
+        using (HttpClient client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Authorization = 
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PutAsync(
+                $"{Constants.BACKEND_URL}/usuario/{perfil.Id}", content);
+            
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            if (!response.IsSuccessStatusCode)
+                throw new Exception($"Erro ao atualizar perfil: {responseBody}");
+
+            return responseBody;
         }
     }
 }

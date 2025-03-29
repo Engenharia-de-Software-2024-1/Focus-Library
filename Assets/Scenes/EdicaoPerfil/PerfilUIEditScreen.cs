@@ -22,7 +22,7 @@ public class PerfilEditScreen : MonoBehaviour
 
     private async void CarregarPerfilAtual()
     {
-        string token = PlayerPrefs.GetString("authToken");
+        string token = PlayerPrefs.GetString("JWT_TOKEN");
         if (string.IsNullOrEmpty(token))
         {
             Debug.LogError("Token de autenticação não encontrado!");

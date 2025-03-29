@@ -59,6 +59,7 @@ public class AuthManager : MonoBehaviour
                     }
                     else
                     {
+                        Debug.LogError($"Erro: {apiResponse.acessToken}");
                         Debug.LogError($"Erro: {response.StatusCode}");
                         onFailure?.Invoke($"Erro: {response.StatusCode}");
                     }
@@ -72,9 +73,9 @@ public class AuthManager : MonoBehaviour
         }
     }
 
-    private void SaveTokens(string token, string refreshToken)
+    private void SaveTokens(string acessToken, string refreshToken)
     {
-        PlayerPrefs.SetString("JWT_TOKEN", token);
+        PlayerPrefs.SetString("JWT_TOKEN", acessToken);
         PlayerPrefs.SetString("REFRESH_TOKEN", refreshToken);
         PlayerPrefs.Save();
     }
