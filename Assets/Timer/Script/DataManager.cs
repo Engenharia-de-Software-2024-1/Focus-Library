@@ -65,7 +65,6 @@ public class DataManager : MonoBehaviour {
     }
 }
 
-
 // Classe de dados para enviar as estatísticas para o servidor.
 [System.Serializable]
 public class StatisticsData {
