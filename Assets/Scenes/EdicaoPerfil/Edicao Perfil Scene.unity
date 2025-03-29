@@ -1711,7 +1711,7 @@ GameObject:
   - component: {fileID: 1074825157}
   - component: {fileID: 1074825156}
   m_Layer: 5
-  m_Name: Save
+  m_Name: SaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2822,6 +2822,7 @@ GameObject:
   - component: {fileID: 1512922586}
   - component: {fileID: 1512922585}
   - component: {fileID: 1512922584}
+  - component: {fileID: 1512922588}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2924,6 +2925,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1512922588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512922583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66a42c8d192581e4abf1a14084583a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usernameInput: {fileID: 1403107484}
+  emailInput: {fileID: 560754381}
+  dataNascimentoInput: {fileID: 422725227}
+  salvarButton: {fileID: 1074825156}
 --- !u!1 &1534407673
 GameObject:
   m_ObjectHideFlags: 0
