@@ -33,11 +33,11 @@ public class ToggleButton : MonoBehaviour
         var nextValue = value == 0 ? 1 : 0;
         if (nextValue == 0) 
         {
-            OnDisable.Invoke();
+            OnDisable?.Invoke();
         } 
         else 
         {
-            OnEnable.Invoke();
+            OnEnable?.Invoke();
         }
         setVisuals(nextValue);
         StartCoroutine(AnimateSlider(nextValue));
@@ -81,9 +81,7 @@ public class ToggleButton : MonoBehaviour
         }
     }
 
-    private void setVisuals(float nextValue)
-    {
-        buttonText.text = nextValue == 0 ? "Off" : "On";
+    private void setVisuals(float nextValue) =>
         background.sprite = nextValue == 0 ?  disableBackground : enableBackground;
-    }
+    
 }
