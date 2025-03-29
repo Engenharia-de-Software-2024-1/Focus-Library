@@ -206,7 +206,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 755060122}
         m_TargetAssemblyTypeName: LoginUIHandler, Assembly-CSharp
-        m_MethodName: OnLoginClicked
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1223,10 +1223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 134fc6b4687d1214cab16356df4a0707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usernameInput: {fileID: 0}
-  passwordInput: {fileID: 0}
-  loginButton: {fileID: 0}
-  errorText: {fileID: 0}
+  usernameInput: {fileID: 1343186487}
+  passwordInput: {fileID: 528269897}
+  loginButton: {fileID: 42794602}
+  errorText: {fileID: 1627409748}
 --- !u!1 &848423336
 GameObject:
   m_ObjectHideFlags: 0
