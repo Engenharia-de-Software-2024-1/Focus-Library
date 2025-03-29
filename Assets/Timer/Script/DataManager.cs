@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -24,7 +23,7 @@ public class DataManager : MonoBehaviour {
 
     public void SetStatistics(int sessions, float focus, float rest) {
         completedSessions = sessions;
-        totalFocusTime = (int)Math.Truncate(focus / 60); 
+        totalFocusTime = (int)System.Math.Truncate(focus / 60); 
         totalRestTime = rest;
     }
 
@@ -37,7 +36,7 @@ public class DataManager : MonoBehaviour {
             StatisticsData data = new StatisticsData() {
                 sessions = completedSessions,
                 focusTime = totalFocusTime,
-                date = DateTime.Now.ToString("yyyy/MM/dd") 
+                date = System.DateTime.Now.ToString("yyyy/MM/dd") 
             };
             
          // Serializa o objeto para JSON
@@ -68,7 +67,7 @@ public class DataManager : MonoBehaviour {
 
 
 // Classe de dados para enviar as estatísticas para o servidor.
-[Serializable]
+[System.Serializable]
 public class StatisticsData {
     public int sessions;      // Número de sessões completadas
     public int focusTime;      // Tempo total de foco em minutos
