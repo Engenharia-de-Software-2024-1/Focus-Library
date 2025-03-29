@@ -11,7 +11,7 @@ public class PerfilApiClient : MonoBehaviour
     private void Awake()
     {
         httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri("https://c7ff-177-73-205-176.ngrok-free.app/usuario"); //"http://localhost:8080/usuario"
+        httpClient.BaseAddress = new Uri(Constants.BACKEND_URL + "/usuario"); //"http://localhost:8080/usuario"
     }
 
     public async Task<Perfil> ObterPerfil(string token)
