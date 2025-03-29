@@ -1,0 +1,1 @@
+Roslyn version: 3.9.0.0Language version: CSharp9!Concurrent execution: enabled

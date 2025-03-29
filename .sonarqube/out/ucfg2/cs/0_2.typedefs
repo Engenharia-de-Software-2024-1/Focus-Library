@@ -1,0 +1,95 @@
+ò
+FocusTimerScriptUnityEngine.MonoBehaviourUnityEngine.BehaviourUnityEngine.ComponentUnityEngine.Objectobject#
+Start()FocusTimerScript.Start()%
+Update()FocusTimerScript.Update()=
+UpdateTimerDisplay()%FocusTimerScript.UpdateTimerDisplay()3
+OnQuitClicked() FocusTimerScript.OnQuitClicked()9
+FocusTimerScript()#FocusTimerScript.FocusTimerScript()‘
+TimerManagerUnityEngine.MonoBehaviourUnityEngine.BehaviourUnityEngine.ComponentUnityEngine.Objectobject)
+StartTimer()TimerManager.StartTimer()+
+UpdateTimer()TimerManager.UpdateTimer()
+Quit()TimerManager.Quit())
+StartFocus()TimerManager.StartFocus()'
+StartRest()TimerManager.StartRest()/
+StartLongRest()TimerManager.StartLongRest())
+EndSession()TimerManager.EndSession()-
+TimerManager()TimerManager.TimerManager()1
+CurrentState.getTimerManager.CurrentState.get1
+CurrentState.setTimerManager.CurrentState.set/
+CurrentTime.getTimerManager.CurrentTime.get/
+CurrentTime.setTimerManager.CurrentTime.set4
+2Notifications.Binding.ISupressNotificationsBindingà
+%AppRestriction.Models.ApplicationInfoobject–
+6ApplicationInfo(string, string, UnityEngine.Texture2D)\AppRestriction.Models.ApplicationInfo.ApplicationInfo(string, string, UnityEngine.Texture2D):
+Name.get.AppRestriction.Models.ApplicationInfo.Name.get:
+Name.set.AppRestriction.Models.ApplicationInfo.Name.setH
+ProcessName.get5AppRestriction.Models.ApplicationInfo.ProcessName.getH
+ProcessName.set5AppRestriction.Models.ApplicationInfo.ProcessName.set:
+Icon.get.AppRestriction.Models.ApplicationInfo.Icon.get:
+Icon.set.AppRestriction.Models.ApplicationInfo.Icon.setH
+isSupressed.get5AppRestriction.Models.ApplicationInfo.isSupressed.getH
+isSupressed.set5AppRestriction.Models.ApplicationInfo.isSupressed.setï
+UIColorManagerUnityEngine.MonoBehaviourUnityEngine.BehaviourUnityEngine.ComponentUnityEngine.ObjectobjectC
+UpdateColors(TimerState)'UIColorManager.UpdateColors(TimerState)3
+UIColorManager()UIColorManager.UIColorManager()ö
+LoginUIHandlerUnityEngine.MonoBehaviourUnityEngine.BehaviourUnityEngine.ComponentUnityEngine.Objectobject!
+Start()LoginUIHandler.Start()3
+OnLoginClicked()LoginUIHandler.OnLoginClicked()-
+ClearFields()LoginUIHandler.ClearFields()C
+ShowErrorMessage(string)'LoginUIHandler.ShowErrorMessage(string)3
+LoginUIHandler()LoginUIHandler.LoginUIHandler()™
+AuthManagerUnityEngine.MonoBehaviourUnityEngine.BehaviourUnityEngine.ComponentUnityEngine.Objectobject
+Awake()AuthManager.Awake()’
+AHandleLogin(string, string, System.Action, System.Action<string>)MAuthManager.HandleLogin(string, string, System.Action, System.Action<string>)D
+SaveTokens(string, string)&AuthManager.SaveTokens(string, string)*
+AuthManager()AuthManager.AuthManager()·
+AppRestrictionSceneUnityEngine.MonoBehaviourUnityEngine.BehaviourUnityEngine.ComponentUnityEngine.Objectobject&
+Start()AppRestrictionScene.Start()È
+XsetupAppsContent(System.Collections.Generic.List<AppRestriction.Models.ApplicationInfo>)lAppRestrictionScene.setupAppsContent(System.Collections.Generic.List<AppRestriction.Models.ApplicationInfo>)8
+StartVerifying()$AppRestrictionScene.StartVerifying()J
+VerifyEverySeconds(float)-AppRestrictionScene.VerifyEverySeconds(float)B
+AppRestrictionScene())AppRestrictionScene.AppRestrictionScene()k
+AppRestriction.RestrictedAppsobjectB
+RestrictedApps().AppRestriction.RestrictedApps.RestrictedApps() 
+AppRestriction.IAppRestrictionò
+@AppRestriction.Bindings.UnsupportedPlatformAppRestrictionBindingobject.AppRestriction.Bindings.IAppRestrictionBindingi
+GetInstalledApps()SAppRestriction.Bindings.UnsupportedPlatformAppRestrictionBinding.GetInstalledApps()o
+GetRunningAppsNames()VAppRestriction.Bindings.UnsupportedPlatformAppRestrictionBinding.GetRunningAppsNames()™
+*UnsupportedPlatformAppRestrictionBinding()kAppRestriction.Bindings.UnsupportedPlatformAppRestrictionBinding.UnsupportedPlatformAppRestrictionBinding()0
+.AppRestriction.Bindings.IAppRestrictionBindingš
+"Notifications.SupressNotificationsobject#Notifications.ISupressNotificationsS
+SupressNotifications()9Notifications.SupressNotifications.SupressNotifications()Y
+SupressAllNotifications()<Notifications.SupressNotifications.SupressAllNotifications()g
+ AskForNotificationPolicyAccess()CNotifications.SupressNotifications.AskForNotificationPolicyAccess()m
+#IsNotificationPolicyAccessGranted()FNotifications.SupressNotifications.IsNotificationPolicyAccessGranted()?
+getBinding()/Notifications.SupressNotifications.getBinding()\
+
+TimerStateSystem.EnumSystem.ValueTypeobject'
+TimerState()TimerState.TimerState()ô
+8Notifications.Binding.SupressNotificationsAndroidBindingobject2Notifications.Binding.ISupressNotificationsBinding…
+$SupressNotificationsAndroidBinding()]Notifications.Binding.SupressNotificationsAndroidBinding.SupressNotificationsAndroidBinding()o
+SupressAllNotifications()RNotifications.Binding.SupressNotificationsAndroidBinding.SupressAllNotifications()}
+ AskForNotificationPolicyAccess()YNotifications.Binding.SupressNotificationsAndroidBinding.AskForNotificationPolicyAccess()ƒ
+#IsNotificationPolicyAccessGranted()\Notifications.Binding.SupressNotificationsAndroidBinding.IsNotificationPolicyAccessGranted()Ç
+AppRestriction.AppRestrictionobjectAppRestriction.IAppRestrictionB
+AppRestriction().AppRestriction.AppRestriction.AppRestriction()F
+GetInstalledApps()0AppRestriction.AppRestriction.GetInstalledApps()L
+GetRunningAppsNames()3AppRestriction.AppRestriction.GetRunningAppsNames()\
+VerifyRestrictedAppsRunning();AppRestriction.AppRestriction.VerifyRestrictedAppsRunning()F
+getNativeBinding()0AppRestriction.AppRestriction.getNativeBinding()U
+APILoginResponseobject9
+APILoginResponse()#APILoginResponse.APILoginResponse()ø
+ToggleButtonUnityEngine.MonoBehaviourUnityEngine.BehaviourUnityEngine.ComponentUnityEngine.Objectobject!
+Toggle()ToggleButton.Toggle()9
+AnimateSlider(float)!ToggleButton.AnimateSlider(float)A
+moveHandle(float, float)%ToggleButton.moveHandle(float, float)3
+setVisuals(float)ToggleButton.setVisuals(float)-
+ToggleButton()ToggleButton.ToggleButton()%
+#Notifications.ISupressNotificationsí
+7Notifications.Binding.SupressNotificationsEditorBindingobject2Notifications.Binding.ISupressNotificationsBindingn
+SupressAllNotifications()QNotifications.Binding.SupressNotificationsEditorBinding.SupressAllNotifications()|
+ AskForNotificationPolicyAccess()XNotifications.Binding.SupressNotificationsEditorBinding.AskForNotificationPolicyAccess()‚
+#IsNotificationPolicyAccessGranted()[Notifications.Binding.SupressNotificationsEditorBinding.IsNotificationPolicyAccessGranted()‚
+#SupressNotificationsEditorBinding()[Notifications.Binding.SupressNotificationsEditorBinding.SupressNotificationsEditorBinding()Q
+AuthManager.LoginDataobject0
+LoginData()!AuthManager.LoginData.LoginData()

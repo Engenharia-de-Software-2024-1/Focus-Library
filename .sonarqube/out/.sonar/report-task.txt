@@ -1,0 +1,7 @@
+organization=engenharia-de-software-2024-1
+projectKey=Engenharia-de-Software-2024-1_Focus-Library
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.61173
+dashboardUrl=https://sonarcloud.io/dashboard?id=Engenharia-de-Software-2024-1_Focus-Library
+ceTaskId=AZXjnZB7hN1MGpvqBkRE
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZXjnZB7hN1MGpvqBkRE

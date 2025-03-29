@@ -1,0 +1,44 @@
+﻿/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Scenes/AppRestriction/AppRestrictionScene.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Timer/Script/TimerManager.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Resources/AppRestriction/Prefabs/ToggleButton/ToggleButton.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/AppRestriction/Bidings/Android/AndroidAppRestrictionBinding.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/AppRestriction/Bidings/UnsupportedPlatformAppRestrictionBinding.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Notifications/Binding/ISupressNotificationBinding.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Timer/Script/UIColorManager.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Login/APILoginResponse.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Notifications/SupressNotifications.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Notifications/Binding/Android/SupressNotificationsAndroidBinding.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Timer/Script/FocusManager.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/AppRestriction/Models/ApplicationInfo.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Scenes/Login/LoginUIHandler.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/AppRestriction/AppRestriction.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Notifications/ISupressNotifications.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/AppRestriction/RestrictedApps.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Notifications/Binding/SupressNotificationEditorBinding.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/Login/AuthManager.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/AppRestriction/IAppRestriction.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/AppRestriction/Bidings/IAppRestrictionBinding.cs
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMPro.cginc
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Resources/Fonts & Materials/OFL.txt
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Resources/Fonts & Materials/README.txt
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_SDF.shader
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Glyph Report.txt
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
+/Users/samuel.matos/Documents/studies/es/Focus-Library/Assets/TextMesh Pro/Shaders/TMP_Sprite.shader
