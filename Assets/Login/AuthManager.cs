@@ -33,20 +33,11 @@ public class AuthManager : MonoBehaviour
                     username = username, 
                     senha = password 
                 };
-
                 string json = JsonUtility.ToJson(loginData);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-
                 HttpResponseMessage response = await client.PostAsync(loginEndpoint, content);
                 string responseJson = await response.Content.ReadAsStringAsync();
-
                 APILoginResponse apiResponse = JsonUtility.FromJson<APILoginResponse>(responseJson);
-
-                if(string.IsNullOrEmpty(apiResponse.acessToken)){
-                    Debug.Log("O token não veio :(");
-                }else{
-                    Debug.Log("O token veio :)");
-                }
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -54,6 +45,11 @@ public class AuthManager : MonoBehaviour
                     SaveTokens(apiResponse.acessToken, apiResponse.refreshToken);
                     onSuccess?.Invoke();
                     SceneManager.LoadScene("Estante Scene");
+                    if(string.IsNullOrEmpty(apiResponse.acessToken)){
+                        Debug.Log("O token não veio :(");
+                    }else{
+                        Debug.Log("O token veio :)");
+                    }
                 }
                 else
                 {

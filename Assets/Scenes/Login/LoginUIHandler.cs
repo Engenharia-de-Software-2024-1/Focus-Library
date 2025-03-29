@@ -10,7 +10,9 @@ public class LoginUIHandler : MonoBehaviour
     [SerializeField] private Button loginButton;
     [SerializeField] private TMP_Text errorText; // Novo campo para mensagens de erro
 
-    private void Start()
+    private void Start(){}
+
+    public void OnLoginClicked()
     {
         
         if (usernameInput == null || passwordInput == null || loginButton == null || errorText == null)
@@ -21,12 +23,8 @@ public class LoginUIHandler : MonoBehaviour
         }
 
         passwordInput.contentType = TMP_InputField.ContentType.Password;
-        loginButton.onClick.AddListener(OnLoginClicked);
         errorText.text = ""; 
-    }
 
-    public void OnLoginClicked()
-    {
         string username = usernameInput.text.Trim();
         string password = passwordInput.text;
 
