@@ -2,6 +2,7 @@ using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using AppRestriction.Models;
 using UnityEngine.UI;
 using Unity.VisualScripting;
@@ -38,7 +39,13 @@ public class AppRestrictionScene : MonoBehaviour
         }
     }
 
-    public void StartVerifying() => StartCoroutine(VerifyEverySeconds(verifyInterval));
+    public void OnBackClicked() => SceneManager.LoadScene("ConfigTimerScene");
+
+    public void OnContinueClicked() 
+    {
+        StartCoroutine(VerifyEverySeconds(verifyInterval));
+        SceneManager.LoadScene("Timer");
+    }
 
     IEnumerator VerifyEverySeconds(float seconds)
     {
@@ -46,6 +53,8 @@ public class AppRestrictionScene : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(seconds);
+
+            Debug.Log("oi");
 
             appRestriction.VerifyRestrictedAppsRunning();
         }

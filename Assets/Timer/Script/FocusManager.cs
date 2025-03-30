@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class FocusTimerScript : MonoBehaviour {
     //SerializeField serve para mesmo em privado aparecer no inspector do Unity
@@ -39,5 +40,11 @@ public class FocusTimerScript : MonoBehaviour {
     public void OnQuitClicked() {
         timerManager.Quit();
         colorManager.UpdateColors(TimerState.Idle);
+        StartCoroutine(waiter(2f));
     }
+    IEnumerator waiter(float x){
+        yield return new WaitForSeconds(x);
+        SceneManager.LoadScene("Estante Scene");
+    }
+
 }

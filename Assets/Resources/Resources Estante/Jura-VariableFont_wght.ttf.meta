@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 684a8767d606c4e6fb3b9caab26ab07e
+=======
 guid: f5ab0ef69b98184489a5beb47e672cf1
+>>>>>>> 085ba08 (Tela Estante)
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4

@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LoginUIHandler : MonoBehaviour
 {
@@ -10,7 +11,9 @@ public class LoginUIHandler : MonoBehaviour
     [SerializeField] private Button loginButton;
     [SerializeField] private TMP_Text errorText; // Novo campo para mensagens de erro
 
-    private void Start()
+    private void Start(){}
+
+    public void OnLoginClicked()
     {
         
         if (usernameInput == null || passwordInput == null || loginButton == null || errorText == null)
@@ -21,12 +24,8 @@ public class LoginUIHandler : MonoBehaviour
         }
 
         passwordInput.contentType = TMP_InputField.ContentType.Password;
-        loginButton.onClick.AddListener(OnLoginClicked);
         errorText.text = ""; 
-    }
 
-    public void OnLoginClicked()
-    {
         string username = usernameInput.text.Trim();
         string password = passwordInput.text;
 
@@ -41,7 +40,7 @@ public class LoginUIHandler : MonoBehaviour
         if (AuthManager.Instance != null)
         {
             errorText.text = ""; // Limpa erros anteriores
-            AuthManager.Instance.HandleLogin(username, password, ClearFields, ShowErrorMessage);
+            AuthManager.Instance.HandleLogin(username, password, () => SceneManager.LoadScene("Estante Scene"), ShowErrorMessage);
         }
         else
         {
@@ -50,14 +49,8 @@ public class LoginUIHandler : MonoBehaviour
         }
     }
 
-    public void ClearFields()
-    {
-        usernameInput.text = "";
-        passwordInput.text = "";
-        errorText.text = ""; 
-    }
+    public void OnCadastroClicked() => SceneManager.LoadScene("TelaCadastro");
 
-    
     public void ShowErrorMessage(string message)
     {
         errorText.text = message;

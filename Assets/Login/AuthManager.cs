@@ -1,13 +1,15 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System;
+using Constants;
 
 public class AuthManager : MonoBehaviour
 {
     public static AuthManager Instance { get; private set; }
-    [SerializeField] private string loginEndpoint = "http://localhost:8080/auth/login";
+    [SerializeField] private string loginEndpoint = NetworkingConstants.BACKEND_URL + "/auth/login";
 
     private void Awake()
     {
@@ -32,20 +34,23 @@ public class AuthManager : MonoBehaviour
                     username = username, 
                     senha = password 
                 };
-
                 string json = JsonUtility.ToJson(loginData);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-
                 HttpResponseMessage response = await client.PostAsync(loginEndpoint, content);
                 string responseJson = await response.Content.ReadAsStringAsync();
-
                 APILoginResponse apiResponse = JsonUtility.FromJson<APILoginResponse>(responseJson);
 
-                if (response.IsSuccessStatusCode && !string.IsNullOrEmpty(apiResponse.acessToken))
+                if (response.IsSuccessStatusCode)
                 {
                     Debug.Log("Login bem-sucedido!");
                     SaveTokens(apiResponse.acessToken, apiResponse.refreshToken);
                     onSuccess?.Invoke();
+                    SceneManager.LoadScene("Estante Scene");
+                    if(string.IsNullOrEmpty(apiResponse.acessToken)){
+                        Debug.Log("O token não veio :(");
+                    }else{
+                        Debug.Log("O token veio :)");
+                    }
                 }
                 else
                 {
