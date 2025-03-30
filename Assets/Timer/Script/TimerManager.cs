@@ -45,8 +45,8 @@ public class TimerManager : MonoBehaviour {
                 }
 
             } else if (CurrentState == TimerState.Rest) {
-
                 lastRestDuration = (int)currentRestDuration;
+
                 if (DataManager.Instance != null) {
                     DataManager.Instance.AddSession((int)lastFocusDuration, (int)lastRestDuration);
                 } else {
@@ -65,7 +65,6 @@ public class TimerManager : MonoBehaviour {
         }
     }
 
-    // Caso o usuário cancele a sessão, envia os dados parciais do ciclo atual. // 
     public void Quit() {
         if (CurrentState == TimerState.Focus) {
             lastFocusDuration = (int)(focusTime - CurrentTime);

@@ -8,7 +8,7 @@ public class DataManager : MonoBehaviour {
 
     [SerializeField] private string authToken = ""; //Como puxar o Token? Do PlayerPrefs?
     [SerializeField] private string apiBaseUrl = "http://localhost:8080";
-    private List<SessionData> sessions = new List<SessionData>(); // Agora será uma lista que armazena isso.
+    private List<SessionData> sessions = new List<SessionData>(); // Agora será uma lista que armazena cada sessão individualmente.
 
     private void Awake() {
         if (Instance != null && Instance != this) {
