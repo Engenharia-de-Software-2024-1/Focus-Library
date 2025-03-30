@@ -52,7 +52,8 @@ public class PerfilManagerDB
         // Serializa usando JsonUtility
         string json = JsonUtility.ToJson(perfilData);
 
-        var client = new NetworkingClient().Client;
+        var networkingClient = new NetworkingClient();
+        var client = networkingClient.Client;
 
         var content = new StringContent(json, Encoding.UTF8, "application/json"); // colocar link do ngrok.
         HttpResponseMessage response = await client.PostAsync(NetworkingConstants.BACKEND_URL + "/auth/registrar", content);
@@ -69,53 +70,52 @@ public class PerfilManagerDB
     /// </summary>
     public async Task<Perfil> ObterPerfil(string token)
     {
-        using (HttpClient client = new HttpClient())
+        var client = (new NetworkingClient()).Client;
+
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        
+        HttpResponseMessage response = await client.GetAsync(NetworkingConstants.BACKEND_URL + "/usuario");
+        
+        string responseBody = await response.Content.ReadAsStringAsync();
+        Debug.Log($"Resposta do servidor ao obter perfil: {responseBody}");
+
+        if (!response.IsSuccessStatusCode)
+            throw new Exception($"Erro ao buscar perfil: {response.StatusCode}, {responseBody}");
+
+        PerfilDTO perfilData = JsonUtility.FromJson<PerfilDTO>(responseBody);
+        
+        // Cria o perfil com dados básicos
+        Perfil perfil = new Perfil(perfilData.username, perfilData.email, "senha_temporaria")
         {
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            
-            HttpResponseMessage response = await client.GetAsync(NetworkingConstants.BACKEND_URL + "/usuario");
-            
-            string responseBody = await response.Content.ReadAsStringAsync();
-            Debug.Log($"Resposta do servidor ao obter perfil: {responseBody}");
-
-            if (!response.IsSuccessStatusCode)
-                throw new Exception($"Erro ao buscar perfil: {response.StatusCode}, {responseBody}");
-
-            PerfilDTO perfilData = JsonUtility.FromJson<PerfilDTO>(responseBody);
-            
-            // Cria o perfil com dados básicos
-            Perfil perfil = new Perfil(perfilData.username, perfilData.email, "senha_temporaria")
+            Id = perfilData.id
+        };
+        
+        // Processa a data de nascimento apenas se existir no perfil DTO
+        if (!string.IsNullOrEmpty(perfilData.dataNascimento))
+        {
+            DateTime dataNascimento;
+            if (DateTime.TryParseExact(perfilData.dataNascimento, "yyyy/MM/dd", 
+                System.Globalization.CultureInfo.InvariantCulture, 
+                System.Globalization.DateTimeStyles.None, out dataNascimento))
             {
-                Id = perfilData.id
-            };
-            
-            // Processa a data de nascimento apenas se existir no perfil DTO
-            if (!string.IsNullOrEmpty(perfilData.dataNascimento))
+                perfil.DataNascimento = dataNascimento;
+            }
+            else if (DateTime.TryParse(perfilData.dataNascimento, out dataNascimento))
             {
-                DateTime dataNascimento;
-                if (DateTime.TryParseExact(perfilData.dataNascimento, "yyyy/MM/dd", 
-                    System.Globalization.CultureInfo.InvariantCulture, 
-                    System.Globalization.DateTimeStyles.None, out dataNascimento))
-                {
-                    perfil.DataNascimento = dataNascimento;
-                }
-                else if (DateTime.TryParse(perfilData.dataNascimento, out dataNascimento))
-                {
-                    perfil.DataNascimento = dataNascimento;
-                }
-                else
-                {
-                    Debug.LogWarning($"Não foi possível parsear a data de nascimento: {perfilData.dataNascimento}");
-                    perfil.DataNascimento = null;
-                }
+                perfil.DataNascimento = dataNascimento;
             }
             else
             {
+                Debug.LogWarning($"Não foi possível parsear a data de nascimento: {perfilData.dataNascimento}");
                 perfil.DataNascimento = null;
             }
-            
-            return perfil;
         }
+        else
+        {
+            perfil.DataNascimento = null;
+        }
+        
+        return perfil;
     }
     
     /// <summary>
@@ -146,37 +146,36 @@ public class PerfilManagerDB
         Debug.Log($"Enviando dados para atualização: {json}");
 
         // Realiza o PUT para atualizar o perfil no endpoint /usuario/dadosgerais/{id}
-        using (HttpClient client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            
-            // Exibe os headers enviados para debug
-            Debug.Log("Headers enviados:");
-            foreach (var header in client.DefaultRequestHeaders)
-            {
-                Debug.Log($"{header.Key}: {string.Join(", ", header.Value)}");
-            }
-            
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            Debug.Log($"Content-Type: {content.Headers.ContentType}");
-            
-            string putUrl = NetworkingConstants.BACKEND_URL + "/usuario/dadosgerais/" + perfil.Id;
-            Debug.Log($"Chamando PUT: {putUrl}");
-            
-            HttpResponseMessage putResponse = await client.PutAsync(putUrl, content);
-            string putResponseBody = await putResponse.Content.ReadAsStringAsync();
-            Debug.Log($"Resposta da atualização: StatusCode={putResponse.StatusCode}, Body={putResponseBody}");
+        var client = (new NetworkingClient()).Client;
 
-            if (!putResponse.IsSuccessStatusCode)
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        
+        // Exibe os headers enviados para debug
+        Debug.Log("Headers enviados:");
+        foreach (var header in client.DefaultRequestHeaders)
+        {
+            Debug.Log($"{header.Key}: {string.Join(", ", header.Value)}");
+        }
+        
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        Debug.Log($"Content-Type: {content.Headers.ContentType}");
+        
+        string putUrl = NetworkingConstants.BACKEND_URL + "/usuario/dadosgerais/" + perfil.Id;
+        Debug.Log($"Chamando PUT: {putUrl}");
+        
+        HttpResponseMessage putResponse = await client.PutAsync(putUrl, content);
+        string putResponseBody = await putResponse.Content.ReadAsStringAsync();
+        Debug.Log($"Resposta da atualização: StatusCode={putResponse.StatusCode}, Body={putResponseBody}");
+
+        if (!putResponse.IsSuccessStatusCode)
+        {
+            if (putResponse.StatusCode == HttpStatusCode.Forbidden)
             {
-                if (putResponse.StatusCode == HttpStatusCode.Forbidden)
-                {
-                    Debug.LogError("Erro 403 Forbidden - Verifique se o token está válido e tem permissões corretas");
-                    Debug.LogError($"Token usado: {token.Substring(0, Math.Min(20, token.Length))}...");
-                }
-                
-                throw new Exception($"Erro ao atualizar perfil: {putResponse.StatusCode}, {putResponseBody}");
+                Debug.LogError("Erro 403 Forbidden - Verifique se o token está válido e tem permissões corretas");
+                Debug.LogError($"Token usado: {token.Substring(0, Math.Min(20, token.Length))}...");
             }
+            
+            throw new Exception($"Erro ao atualizar perfil: {putResponse.StatusCode}, {putResponseBody}");
         }
     }
 
@@ -195,190 +194,26 @@ public class PerfilManagerDB
         Debug.Log($"RefreshToken recuperado: {refreshToken.Substring(0, Math.Min(10, refreshToken.Length))}...");
 
         // Realiza o GET para renovar o token JWT usando o refresh token
-        using (HttpClient client = new HttpClient())
-        {
-            string refreshUrl = $"{NetworkingConstants.BACKEND_URL}/auth/refresh?refreshToken={refreshToken}";
-            Debug.Log($"Chamando GET: {refreshUrl}");
-            
-            HttpResponseMessage refreshResponse = await client.GetAsync(refreshUrl);
-            string newToken = await refreshResponse.Content.ReadAsStringAsync();
-            Debug.Log($"Resposta do refresh: StatusCode={refreshResponse.StatusCode}");
-
-            if (!refreshResponse.IsSuccessStatusCode)
-            {
-                throw new Exception($"Erro ao renovar token: {refreshResponse.StatusCode}, {newToken}");
-            }
-
-            // Atualiza o novo token no PlayerPrefs
-            PlayerPrefs.SetString("JWT_TOKEN", newToken);
-            PlayerPrefs.Save();
-            Debug.Log("Novo token salvo no PlayerPrefs.");
-
-            return newToken;
-        }
-    }
-
-    /// <summary>
-    /// Atualiza o perfil e renova o token, combinando as duas operações.
-    /// </summary>
-    public async Task<string> AtualizarPerfilComRefresh(Perfil perfil, string token)
-    {
-        await AtualizarPerfil(perfil, token);
-        return await RefreshToken();
-    }
-
-    /// <summary>
-    /// Obtém o perfil do usuário utilizando o token JWT.
-    /// </summary>
-    public async Task<Perfil> ObterPerfil(string token)
-    {
-        using (HttpClient client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            
-            HttpResponseMessage response = await client.GetAsync(NetworkingConstants.BACKEND_URL + "/usuario");
-            
-            string responseBody = await response.Content.ReadAsStringAsync();
-            Debug.Log($"Resposta do servidor ao obter perfil: {responseBody}");
-
-            if (!response.IsSuccessStatusCode)
-                throw new Exception($"Erro ao buscar perfil: {response.StatusCode}, {responseBody}");
-
-            PerfilDTO perfilData = JsonUtility.FromJson<PerfilDTO>(responseBody);
-            
-            // Cria o perfil com dados básicos
-            Perfil perfil = new Perfil(perfilData.username, perfilData.email, "senha_temporaria")
-            {
-                Id = perfilData.id
-            };
-            
-            // Processa a data de nascimento apenas se existir no perfil DTO
-            if (!string.IsNullOrEmpty(perfilData.dataNascimento))
-            {
-                DateTime dataNascimento;
-                if (DateTime.TryParseExact(perfilData.dataNascimento, "yyyy/MM/dd", 
-                    System.Globalization.CultureInfo.InvariantCulture, 
-                    System.Globalization.DateTimeStyles.None, out dataNascimento))
-                {
-                    perfil.DataNascimento = dataNascimento;
-                }
-                else if (DateTime.TryParse(perfilData.dataNascimento, out dataNascimento))
-                {
-                    perfil.DataNascimento = dataNascimento;
-                }
-                else
-                {
-                    Debug.LogWarning($"Não foi possível parsear a data de nascimento: {perfilData.dataNascimento}");
-                    perfil.DataNascimento = null;
-                }
-            }
-            else
-            {
-                perfil.DataNascimento = null;
-            }
-            
-            return perfil;
-        }
-    }
+        var client = (new NetworkingClient()).Client;
     
-    /// <summary>
-    /// Atualiza o perfil do usuário no backend.
-    /// </summary>
-    public async Task AtualizarPerfil(Perfil perfil, string token)
-    {
-        if (string.IsNullOrEmpty(token))
-        {
-            Debug.LogError("O token está vazio ou nulo");
-            throw new Exception("Token de autenticação inválido");
-        }
+        string refreshUrl = $"{NetworkingConstants.BACKEND_URL}/auth/refresh?refreshToken={refreshToken}";
+        Debug.Log($"Chamando GET: {refreshUrl}");
         
-        Debug.Log($"Token usado para autorização: {token.Substring(0, Math.Min(10, token.Length))}...");
-        
-        // Cria o objeto DTO específico para atualização (sem o ID)
-        PerfilAtualizacaoDTO perfilData = new PerfilAtualizacaoDTO
+        HttpResponseMessage refreshResponse = await client.GetAsync(refreshUrl);
+        string newToken = await refreshResponse.Content.ReadAsStringAsync();
+        Debug.Log($"Resposta do refresh: StatusCode={refreshResponse.StatusCode}");
+
+        if (!refreshResponse.IsSuccessStatusCode)
         {
-            username = perfil.Username,
-            email = perfil.Email,
-            // Formata a data no padrão "yyyy-MM-dd" conforme especificado
-            dataNascimento = perfil.DataNascimento.HasValue ? 
-                perfil.DataNascimento.Value.ToString("yyyy-MM-dd") : null
-        };
-
-        // Serializa o objeto para JSON
-        string json = JsonUtility.ToJson(perfilData);
-        Debug.Log($"Enviando dados para atualização: {json}");
-
-        // Realiza o PUT para atualizar o perfil no endpoint /usuario/dadosgerais/{id}
-        using (HttpClient client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            
-            // Exibe os headers enviados para debug
-            Debug.Log("Headers enviados:");
-            foreach (var header in client.DefaultRequestHeaders)
-            {
-                Debug.Log($"{header.Key}: {string.Join(", ", header.Value)}");
-            }
-            
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            Debug.Log($"Content-Type: {content.Headers.ContentType}");
-            
-            string putUrl = NetworkingConstants.BACKEND_URL + "/usuario/dadosgerais/" + perfil.Id;
-            Debug.Log($"Chamando PUT: {putUrl}");
-            
-            HttpResponseMessage putResponse = await client.PutAsync(putUrl, content);
-            string putResponseBody = await putResponse.Content.ReadAsStringAsync();
-            Debug.Log($"Resposta da atualização: StatusCode={putResponse.StatusCode}, Body={putResponseBody}");
-
-            if (!putResponse.IsSuccessStatusCode)
-            {
-                if (putResponse.StatusCode == HttpStatusCode.Forbidden)
-                {
-                    Debug.LogError("Erro 403 Forbidden - Verifique se o token está válido e tem permissões corretas");
-                    Debug.LogError($"Token usado: {token.Substring(0, Math.Min(20, token.Length))}...");
-                }
-                
-                throw new Exception($"Erro ao atualizar perfil: {putResponse.StatusCode}, {putResponseBody}");
-            }
-        }
-    }
-
-    /// <summary>
-    /// Realiza o refresh do token JWT utilizando o refresh token salvo nos PlayerPrefs.
-    /// </summary>
-    public async Task<string> RefreshToken()
-    {
-        // Recupera o refresh token salvo nos PlayerPrefs
-        string refreshToken = PlayerPrefs.GetString("REFRESH_TOKEN");
-        if (string.IsNullOrEmpty(refreshToken))
-        {
-            throw new Exception("Refresh token não encontrado nos PlayerPrefs!");
+            throw new Exception($"Erro ao renovar token: {refreshResponse.StatusCode}, {newToken}");
         }
 
-        Debug.Log($"RefreshToken recuperado: {refreshToken.Substring(0, Math.Min(10, refreshToken.Length))}...");
+        // Atualiza o novo token no PlayerPrefs
+        PlayerPrefs.SetString("JWT_TOKEN", newToken);
+        PlayerPrefs.Save();
+        Debug.Log("Novo token salvo no PlayerPrefs.");
 
-        // Realiza o GET para renovar o token JWT usando o refresh token
-        using (HttpClient client = new HttpClient())
-        {
-            string refreshUrl = $"{NetworkingConstants.BACKEND_URL}/auth/refresh?refreshToken={refreshToken}";
-            Debug.Log($"Chamando GET: {refreshUrl}");
-            
-            HttpResponseMessage refreshResponse = await client.GetAsync(refreshUrl);
-            string newToken = await refreshResponse.Content.ReadAsStringAsync();
-            Debug.Log($"Resposta do refresh: StatusCode={refreshResponse.StatusCode}");
-
-            if (!refreshResponse.IsSuccessStatusCode)
-            {
-                throw new Exception($"Erro ao renovar token: {refreshResponse.StatusCode}, {newToken}");
-            }
-
-            // Atualiza o novo token no PlayerPrefs
-            PlayerPrefs.SetString("JWT_TOKEN", newToken);
-            PlayerPrefs.Save();
-            Debug.Log("Novo token salvo no PlayerPrefs.");
-
-            return newToken;
-        }
+        return newToken;
     }
 
     /// <summary>
