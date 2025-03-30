@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Configs.Timer;
 
 public enum TimerState { Focus, Rest, Idle }
 
 public class TimerManager : MonoBehaviour {
-    //Valores Default em segundos.
-    [SerializeField] private float focusTime = 1500f;
-    [SerializeField] private float restTime = 300f; 
-    [SerializeField] private float longRestTime = 1800f;
-    [SerializeField] private int totalSessions = 1; // Receberá o número de sessões da configuração de sessão.(como será?)
+    public float focusTime = TimerConfigs.FocusTime;
+    public float restTime = TimerConfigs.RestTime; 
+    public float longRestTime = TimerConfigs.LongRestTime;
+    public int totalSessions = TimerConfigs.TotalSessions;
     public TimerState CurrentState { get; private set; } = TimerState.Focus;
     public float CurrentTime { get; private set; }
     private int focusSessionsCount = 0;               
