@@ -36,7 +36,7 @@ public class PerfilManager
     /// <returns>Perfil atualizado.</returns>
     /// <exception cref="ArgumentNullException">Lançada se o perfil for nulo.</exception>
     /// <exception cref="ArgumentException">Lançada se o novo e-mail for inválido.</exception>
-    public async Task<Perfil> EditarPerfil(Perfil perfil, string novoUsername, string novoEmail, DateTime dataNascimento)
+    public async Task<Perfil> EditarPerfil(Perfil perfil, string novoUsername, string novoEmail, DateTime? dataNascimento)
     {
         if (perfil == null)
             throw new ArgumentNullException(nameof(perfil));
@@ -78,15 +78,32 @@ public class PerfilManager
         if (!string.IsNullOrEmpty(perfil.Id))
         {
             // Se tem ID, atualiza o perfil existente
-            string token = PlayerPrefs.GetString("authToken");
-            string response = await managerDB.AtualizarPerfil(perfil, token);
-            Debug.Log("Resposta da atualização: " + response);
+            string token = PlayerPrefs.GetString("JWT_TOKEN"); // Corrigido para usar JWT_TOKEN em vez de authToken
+            try
+            {
+                // Usa o método AtualizarPerfilComRefresh para atualizar o perfil e renovar o token
+                string novoToken = await managerDB.AtualizarPerfilComRefresh(perfil, token);
+                Debug.Log("Perfil atualizado e token renovado com sucesso: " + novoToken);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Erro ao atualizar perfil: {ex.Message}");
+                throw; // Propaga a exceção para tratamento na camada superior
+            }
         }
         else
         {
             // Se não tem ID, faz o registro
-            string response = await managerDB.EnviarPerfilParaRegistro(perfil);
-            Debug.Log("Resposta do registro: " + response);
+            try
+            {
+                string response = await managerDB.EnviarPerfilParaRegistro(perfil);
+                Debug.Log("Resposta do registro: " + response);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Erro ao registrar perfil: {ex.Message}");
+                throw; // Propaga a exceção para tratamento na camada superior
+            }
         }
     }
 }
