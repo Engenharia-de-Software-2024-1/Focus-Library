@@ -4,6 +4,7 @@ using UnityEngine;
 using Configs.Timer;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Constants;
 
 public class TimerScene : MonoBehaviour
 {
@@ -20,11 +21,11 @@ public class TimerScene : MonoBehaviour
 
     void Start()
     {
-        focusSeconds = 1500;
-        restSeconds = 300; 
-        longRestSeconds = 1800;
+        focusSeconds = TimerConfigs.FocusTime != 0 ? TimerConfigs.FocusTime : TimerConstants.FOCUS_SECONDS;
+        restSeconds = TimerConfigs.RestTime != 0 ? TimerConfigs.RestTime : TimerConstants.REST_SECONDS;
+        longRestSeconds = TimerConfigs.LongRestTime != 0 ? TimerConfigs.LongRestTime : TimerConstants.LONG_REST_SECONDS;
+        sessionQtd = TimerConfigs.TotalSessions != 0 ? TimerConfigs.TotalSessions : TimerConstants.SESSIONS_QTD;
 
-        sessionQtd = 1;
         sessionQtdText.text = $"{sessionQtd:00}";
         FormatTimeTexts();
     }

@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Timer/Timer.unity
     guid: 76660605ddaedcc48b4e863a9e1b891b
+  - enabled: 1
+    path: Assets/Scenes/configuracao/Configuracoes Scene.unity
+    guid: 850da53d3768e26488e8e888e967305c
+  - enabled: 1
+    path: Assets/Scenes/ConfigSession/ConfigTimerScene.unity
+    guid: 7564c368f52ae7e4c9450535c01fda2b
   m_configObjects: {}

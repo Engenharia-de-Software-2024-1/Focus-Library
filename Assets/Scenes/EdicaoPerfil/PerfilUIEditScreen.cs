@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using System;
@@ -53,6 +54,8 @@ public class PerfilEditScreen : MonoBehaviour
             Debug.LogError($"Erro ao salvar perfil: {ex.Message}");
         }
     }
+
+    public void OnBackClicked() => SceneManager.LoadScene("Configuracoes Scene");
 
     private Perfil ObterPerfilAtual()
     {
