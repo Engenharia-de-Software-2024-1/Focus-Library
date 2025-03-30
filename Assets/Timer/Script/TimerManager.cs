@@ -6,10 +6,10 @@ using Configs.Timer;
 public enum TimerState { Focus, Rest, Idle }
 
 public class TimerManager : MonoBehaviour {
-    public float focusTime = TimerConfigs.FocusTime;
-    public float restTime = TimerConfigs.RestTime; 
-    public float longRestTime = TimerConfigs.LongRestTime;
-    public int totalSessions = TimerConfigs.TotalSessions;
+    public float focusTime;
+    public float restTime;
+    public float longRestTime;
+    public int totalSessions;
     public TimerState CurrentState { get; private set; } = TimerState.Focus;
     public float CurrentTime { get; private set; }
     private int focusSessionsCount = 0;               
@@ -21,6 +21,11 @@ public class TimerManager : MonoBehaviour {
     private float totalRestTime = 0f;
 
     public void StartTimer() {
+        focusTime = TimerConfigs.FocusTime;
+        restTime = TimerConfigs.RestTime; 
+        longRestTime = TimerConfigs.LongRestTime;
+        totalSessions = TimerConfigs.TotalSessions;
+        
         CurrentState = TimerState.Focus;
         CurrentTime = focusTime;
     }
