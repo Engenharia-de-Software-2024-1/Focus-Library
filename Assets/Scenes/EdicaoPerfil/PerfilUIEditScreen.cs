@@ -111,7 +111,7 @@ public class PerfilEditScreen : MonoBehaviour
             Debug.Log("Token atualizado com sucesso: " + novoToken);
 
             // Esconde a tela de edição
-            gameObject.SetActive(false);
+            
         }
         catch (Exception ex)
         {
