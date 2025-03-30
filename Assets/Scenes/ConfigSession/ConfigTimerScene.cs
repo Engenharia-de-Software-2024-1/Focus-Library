@@ -18,20 +18,20 @@ public class TimerScene : MonoBehaviour
     
     [SerializeField] private TMP_Text sessionQtdText;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
-    }
+        focusSeconds = 1500;
+        restSeconds = 300; 
+        longRestSeconds = 1800;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        sessionQtd = 1;
+        sessionQtdText.text = $"{sessionQtd:00}";
+        FormatTimeTexts();
     }
 
     public void IncreaseFocusTime()
     {
+        if (longRestSeconds >= 356400) return;
         focusSeconds += 1500;
         restSeconds += 300; 
         longRestSeconds += 1800;
@@ -40,7 +40,7 @@ public class TimerScene : MonoBehaviour
 
     public void DecreaseFocusTime()
     {
-        if (focusSeconds <= 0) return;
+        if (focusSeconds <= 1500) return;
         focusSeconds -= 1500;
         restSeconds -= 300;
         longRestSeconds -= 1800;
@@ -49,15 +49,16 @@ public class TimerScene : MonoBehaviour
 
     public void IncreaseSessionQtd()
     {
+        if (sessionQtd >= 99) return;
         sessionQtd++;
-        sessionQtdText.text = (sessionQtd).ToString();
+        sessionQtdText.text = $"{sessionQtd:00}";
     }
 
     public void DecreaseSessionQtd()
     {
-        if (sessionQtd <= 0) return;
+        if (sessionQtd <= 1) return;
         sessionQtd--;
-        sessionQtdText.text = (sessionQtd).ToString();
+        sessionQtdText.text = $"{sessionQtd:00}";
     }
 
     public void OnNextButton()
@@ -67,7 +68,7 @@ public class TimerScene : MonoBehaviour
         TimerConfigs.LongRestTime = longRestSeconds;
         TimerConfigs.TotalSessions = sessionQtd;
         
-        SceneManager.LoadScene("Timer");
+        SceneManager.LoadScene("AppRestriction");
     }
 
     public void OnBackButton()
