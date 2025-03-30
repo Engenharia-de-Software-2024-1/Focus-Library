@@ -1430,6 +1430,7 @@ MonoBehaviour:
   passwordInput: {fileID: 528269897}
   loginButton: {fileID: 42794602}
   errorText: {fileID: 1627409748}
+  authManager: {fileID: 948436683}
 --- !u!1 &1069966189
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class LoginUIHandler : MonoBehaviour
     [SerializeField] private TMP_InputField passwordInput;
     [SerializeField] private Button loginButton;
     [SerializeField] private TMP_Text errorText; // Novo campo para mensagens de erro
+    [SerializeField] private AuthManager authManager;
 
     private void Start(){}
 
@@ -37,10 +38,10 @@ public class LoginUIHandler : MonoBehaviour
         }
 
         
-        if (AuthManager.Instance != null)
+        if (authManager != null)
         {
             errorText.text = ""; // Limpa erros anteriores
-            AuthManager.Instance.HandleLogin(username, password, () => SceneManager.LoadScene("Estante Scene"), ShowErrorMessage);
+            authManager.HandleLogin(username, password, () => SceneManager.LoadScene("Estante Scene"), ShowErrorMessage);
         }
         else
         {

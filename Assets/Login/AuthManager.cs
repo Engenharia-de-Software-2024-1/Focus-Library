@@ -9,21 +9,7 @@ using Networking;
 
 public class AuthManager : MonoBehaviour
 {
-    public static AuthManager Instance { get; private set; }
     [SerializeField] private string loginEndpoint = NetworkingConstants.BACKEND_URL + "/auth/login";
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     public async void HandleLogin(string username, string password, Action onSuccess = null, Action<string> onFailure = null)
     {
