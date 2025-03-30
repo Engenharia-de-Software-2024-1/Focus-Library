@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using UnityEngine;
 using System.Threading.Tasks;
+using Constants;
 
 [System.Serializable]
 public class PerfilDTO
@@ -43,7 +44,7 @@ public class PerfilManagerDB
         using (HttpClient client = new HttpClient())
         {
             var content = new StringContent(json, Encoding.UTF8, "application/json"); // colocar link do ngrok.
-            HttpResponseMessage response = await client.PostAsync(Constants.BACKEND_URL + "/auth/registrar", content);
+            HttpResponseMessage response = await client.PostAsync(NetworkingConstants.BACKEND_URL + "/auth/registrar", content);
             string responseBody = await response.Content.ReadAsStringAsync();
 
             if (response.StatusCode != HttpStatusCode.Created)
