@@ -204,7 +204,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 755060122}
+      - m_Target: {fileID: 948436685}
         m_TargetAssemblyTypeName: LoginUIHandler, Assembly-CSharp
         m_MethodName: OnLoginClicked
         m_Mode: 1
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cbdc90a2ba9a2d631b7effbc918329a7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a579a670596fd6f43ad87d1aa816eb37, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -312,7 +312,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 282b5169cc2412573aefaf5136a172c5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 54c3ed6d34892dc42becb71a08547e18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -420,9 +420,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 755060121}
-        m_TargetAssemblyTypeName: GoToRegister, Assembly-CSharp
-        m_MethodName: ChangeSceneToRegister
+      - m_Target: {fileID: 948436685}
+        m_TargetAssemblyTypeName: LoginUIHandler, Assembly-CSharp
+        m_MethodName: OnCadastroClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7c23d976adb25d81587ce1ad76a2e8eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ededd757cdb95a4ebd7f235fb084ee8, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -796,7 +796,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 31ade0fe32077f223a23aae59cbf6f40, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b76cccc3835ef0f4e85714a6be36686a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1101,8 +1101,6 @@ GameObject:
   - component: {fileID: 755060119}
   - component: {fileID: 755060118}
   - component: {fileID: 755060117}
-  - component: {fileID: 755060121}
-  - component: {fileID: 755060122}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1199,34 +1197,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1080, y: 1920.0001}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &755060121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 755060116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93786478bd95bcc0dbda0019b7c3cddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &755060122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 755060116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 134fc6b4687d1214cab16356df4a0707, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  usernameInput: {fileID: 1343186487}
-  passwordInput: {fileID: 528269897}
-  loginButton: {fileID: 42794602}
-  errorText: {fileID: 1627409748}
 --- !u!1 &848423336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,7 +1350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 60761bd9bfa6e5409bd7c6b0ea7e7f8b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 370e2eca8dc30144ab7a69da712131ef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1518,7 +1488,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fdb4aab036bb2c00585241161c93f595, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22ab0782a7201ee4a9c82f871d72c8a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1602,7 +1572,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 0e81a7820f620fd9898541f5d027c42d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f600ed81ed1d0f54cb7eb6b50f24e256, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1905,7 +1875,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b7c3b003b5a41318791993da50b4b226, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 17fdb2e6a73135c46a31474fd04b668d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2234,7 +2204,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c5bd249d9bdfa3432891378fdca12495, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f38b98571b9cb314a876a33fbfeb265f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
