@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using System.Globalization;
+using UnityEngine.SceneManagement;
 
 public class PerfilEditScreen : MonoBehaviour
 {
@@ -118,4 +119,7 @@ public class PerfilEditScreen : MonoBehaviour
             Debug.LogError($"Erro ao salvar perfil: {ex.Message}");
         }
     }
+
+    public void OnBackClicked() => SceneManager.LoadScene("Configuracoes Scene");
+
 }
