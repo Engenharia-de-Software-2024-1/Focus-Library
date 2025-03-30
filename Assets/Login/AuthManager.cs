@@ -4,11 +4,12 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System;
+using Constants;
 
 public class AuthManager : MonoBehaviour
 {
     public static AuthManager Instance { get; private set; }
-    [SerializeField] private string loginEndpoint = Constants.BACKEND_URL + "/auth/login";
+    [SerializeField] private string loginEndpoint = NetworkingConstants.BACKEND_URL + "/auth/login";
 
     private void Awake()
     {
