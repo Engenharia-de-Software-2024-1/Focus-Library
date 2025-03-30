@@ -5,6 +5,7 @@ using System.Text;
 using UnityEngine;
 using System.Threading.Tasks;
 using Constants;
+using Networking;
 
 [System.Serializable]
 public class PerfilDTO
@@ -41,16 +42,15 @@ public class PerfilManagerDB
         // Serializa usando JsonUtility
         string json = JsonUtility.ToJson(perfilData);
 
-        using (HttpClient client = new HttpClient())
-        {
-            var content = new StringContent(json, Encoding.UTF8, "application/json"); // colocar link do ngrok.
-            HttpResponseMessage response = await client.PostAsync(NetworkingConstants.BACKEND_URL + "/auth/registrar", content);
-            string responseBody = await response.Content.ReadAsStringAsync();
+        var client = new NetworkingClient().Client;
 
-            if (response.StatusCode != HttpStatusCode.Created)
-                throw new Exception($"Falha no registro. Status: {response.StatusCode}. Resposta: {responseBody}");
+        var content = new StringContent(json, Encoding.UTF8, "application/json"); // colocar link do ngrok.
+        HttpResponseMessage response = await client.PostAsync(NetworkingConstants.BACKEND_URL + "/auth/registrar", content);
+        string responseBody = await response.Content.ReadAsStringAsync();
 
-            return responseBody;
-        }
+        if (response.StatusCode != HttpStatusCode.Created)
+            throw new Exception($"Falha no registro. Status: {response.StatusCode}. Resposta: {responseBody}");
+
+        return responseBody;
     }
 }
