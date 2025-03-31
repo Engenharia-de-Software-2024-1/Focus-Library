@@ -33,18 +33,18 @@ public class TimerScene : MonoBehaviour
     public void IncreaseFocusTime()
     {
         if (longRestSeconds >= 356400) return;
-        focusSeconds += 1500;
-        restSeconds += 300; 
-        longRestSeconds += 1800;
+        focusSeconds += TimerConstants.FOCUS_SECONDS;
+        restSeconds += TimerConstants.REST_SECONDS; 
+        longRestSeconds += TimerConstants.LONG_REST_SECONDS;
         FormatTimeTexts();
     }
 
     public void DecreaseFocusTime()
     {
         if (focusSeconds <= 1500) return;
-        focusSeconds -= 1500;
-        restSeconds -= 300;
-        longRestSeconds -= 1800;
+        focusSeconds -= TimerConstants.FOCUS_SECONDS;
+        restSeconds -= TimerConstants.REST_SECONDS;
+        longRestSeconds -= TimerConstants.LONG_REST_SECONDS;
         FormatTimeTexts();
     }
 
