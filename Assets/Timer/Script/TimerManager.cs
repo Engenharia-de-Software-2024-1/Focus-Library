@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Configs.Timer;
+using Notifications;
 
 public enum TimerState { Focus, Rest, Idle }
 
@@ -20,6 +21,8 @@ public class TimerManager : MonoBehaviour {
     private float totalFocusTime = 0f;
     private float totalRestTime = 0f;
 
+    ISupressNotifications supressNotifications;
+
     public void StartTimer() {
         focusTime = TimerConfigs.FocusTime;
         restTime = TimerConfigs.RestTime; 
@@ -28,6 +31,8 @@ public class TimerManager : MonoBehaviour {
         
         CurrentState = TimerState.Focus;
         CurrentTime = focusTime;
+        supressNotifications = new SupressNotifications();
+        supressNotifications.SupressAllNotifications();
     }
 
     public void UpdateTimer() {
@@ -64,21 +69,25 @@ public class TimerManager : MonoBehaviour {
     }
 
     private void StartFocus() {
+        supressNotifications.SupressAllNotifications();
         CurrentState = TimerState.Focus;
         CurrentTime = focusTime;
     }
     private void StartRest() {
+        supressNotifications.StartAllNotifications();
         CurrentState = TimerState.Rest;
         currentRestDuration = restTime;
         CurrentTime = restTime;
     }
 
     private void StartLongRest(){
+        supressNotifications.StartAllNotifications();
         CurrentState = TimerState.Rest;
         currentRestDuration = longRestTime;
         CurrentTime = longRestTime;
     }
     private void EndSession() {
+        supressNotifications.StartAllNotifications();
         CurrentState = TimerState.Idle;
         CurrentTime = 0;
     }
