@@ -17,6 +17,8 @@ namespace Notifications.Binding
 
         public void SupressAllNotifications() => supressNotifications.CallStatic("supressAllNotifications", context);
 
+        public void StartAllNotifications() => supressNotifications.CallStatic("startAllNotifications", context);
+
         public void AskForNotificationPolicyAccess() => supressNotifications.CallStatic("askForNotificationPolicyAccess", context);
 
         public bool IsNotificationPolicyAccessGranted() => supressNotifications.CallStatic<bool>("isNotificationPolicyAccessGranted", context);

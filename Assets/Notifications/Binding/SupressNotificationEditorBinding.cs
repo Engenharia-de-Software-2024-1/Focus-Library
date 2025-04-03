@@ -6,6 +6,8 @@ namespace Notifications.Binding
     {
         public void SupressAllNotifications() => throw new NotImplementedException();
 
+        public void StartAllNotifications() => throw new NotImplementedException();
+
         public void AskForNotificationPolicyAccess() => throw new NotImplementedException();
 
         public bool IsNotificationPolicyAccessGranted() => throw new NotImplementedException();
