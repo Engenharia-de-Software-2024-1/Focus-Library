@@ -9,7 +9,7 @@ using Networking;
 
 public class AuthManager : MonoBehaviour
 {
-    [SerializeField] private string loginEndpoint = NetworkingConstants.BACKEND_URL + "/auth/login";
+    private string loginEndpoint = NetworkingConstants.BACKEND_URL + "/auth/login";
 
     public async void HandleLogin(string username, string password, Action onSuccess = null, Action<string> onFailure = null)
     {
