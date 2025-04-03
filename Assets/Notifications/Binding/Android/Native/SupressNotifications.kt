@@ -19,6 +19,16 @@ object SupressNotifications {
     }
 
     @JvmStatic
+    fun startAllNotifications(context: Context) {
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (notificationManager.isNotificationPolicyAccessGranted) {
+            notificationManager.setInterruptionFilter(NotificationManager.INTERRUPTION_FILTER_ALL)
+        } else {
+            Log.d("StartNotifications", "Notification policy access not granted")
+        }
+    }
+
+    @JvmStatic
     fun askForNotificationPolicyAccess(context: Context) {
         val intent = Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS)
         intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName())

@@ -4,6 +4,8 @@ namespace Notifications.Binding
     {
         void SupressAllNotifications();
 
+        void StartAllNotifications();
+
         void AskForNotificationPolicyAccess();
 
         bool IsNotificationPolicyAccessGranted();

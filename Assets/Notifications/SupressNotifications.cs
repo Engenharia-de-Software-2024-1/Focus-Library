@@ -9,6 +9,8 @@ namespace Notifications
         public SupressNotifications() => binding = getBinding();
 
         public void SupressAllNotifications() => binding.SupressAllNotifications();
+
+        public void StartAllNotifications() => binding.StartAllNotifications();
         
         public void AskForNotificationPolicyAccess() => binding.AskForNotificationPolicyAccess();
 
