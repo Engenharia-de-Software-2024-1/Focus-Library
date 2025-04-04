@@ -41,7 +41,7 @@ public class TimerScene : MonoBehaviour
 
     public void DecreaseFocusTime()
     {
-        if (focusSeconds <= 1500) return;
+        if (focusSeconds <= TimerConstants.FOCUS_SECONDS) return;
         focusSeconds -= TimerConstants.FOCUS_SECONDS;
         restSeconds -= TimerConstants.REST_SECONDS;
         longRestSeconds -= TimerConstants.LONG_REST_SECONDS;
