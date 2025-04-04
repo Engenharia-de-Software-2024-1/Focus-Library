@@ -12,7 +12,10 @@ public class LoginUIHandler : MonoBehaviour
     [SerializeField] private TMP_Text errorText; // Novo campo para mensagens de erro
     [SerializeField] private AuthManager authManager;
 
-    private void Start(){}
+    private void Awake()
+    {
+        if (PlayerPrefs.HasKey("JWT_TOKEN")) SceneManager.LoadScene("Estante Scene");
+    }
 
     public void OnLoginClicked()
     {
